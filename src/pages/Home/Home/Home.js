@@ -1,5 +1,4 @@
 import React from 'react';
-import { Button } from "keep-react";
 import Hero from './Hero/Hero';
 import DogCards from './DogCards/DogCards';
 import About from './About/About';
