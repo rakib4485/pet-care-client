@@ -9,7 +9,7 @@ module.exports = {
   theme: {
     extend: {},
   },
-  plugins: [],
+  plugins: [require("daisyui")],
   presets: [keepPreset],
 }
 
