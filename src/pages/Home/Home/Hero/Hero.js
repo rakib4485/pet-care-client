@@ -13,6 +13,8 @@ import 'swiper/css/effect-fade';
 // import required modules
 import { Autoplay,EffectFade,Navigation } from 'swiper/modules';
 import HeroCard from './HeroCard';
+import Shop from '../Shop/Shop';
+import DogCards from '../DogCards/DogCards';
 
 const Hero = () => {
     const heroItems = [
@@ -39,7 +41,7 @@ const Hero = () => {
         },
     ]
     return (
-        <div>
+        <div className='relative lg:mb-60 md:mb-[500px] mb-[650px]'>
             <Swiper 
                 autoplay={{
                     delay: 3500,
@@ -54,6 +56,9 @@ const Hero = () => {
                     heroItems.map(item => <SwiperSlide key={item.id}><HeroCard item={item}/></SwiperSlide>)
                 }
             </Swiper>
+            <div className='absolute z-50 lg:-bottom-36 md:-bottom-[450px] -bottom-[600px]'>
+                <DogCards/>
+            </div>
         </div>
     );
 };
