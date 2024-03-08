@@ -36,7 +36,7 @@ const Testimonial = () => {
             name: 'Miranda H. Halim',
             designation: 'Founder, Miranda Family',
             comment: 'One thing is clear though: taking a proactive approach to collecting customer feedback ensures you never stray too far from the needs of your community, even as those needs evolve.'
-        },
+        }
     ]
     return (
         <div className='py-20 relative w-full' style={{backgroundImage: `url(${map})`, backgroundRepeat: 'no-repeat', backgroundSize: 'cover', backgroundPosition: 'center'}}>
