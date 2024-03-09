@@ -33,3 +33,7 @@ code {
   border-radius: 50%;
   background: #ff4880;
 }
+
+.footer-bg{
+  background-image: url('https://i.ibb.co/5kgQvjw/footer-bg.png');
+}
