@@ -16,8 +16,8 @@ const About = () => {
                     </div>
                 </div>
                 <div className='mt-5 lg:mt-0'>
-                    <h3 className='font-bold text-4xl title-color'>// About Us //</h3>
-                    <h1 className='my-3 text-4xl lg:text-6xl font-bold lg:w-3/4 text-blue-900'>Best Agency For Your Pet <span className='round-box'></span></h1>
+                    <h3 className='font-bold text-2xl title-color'>// <span className='mx-3'>About Us</span> //</h3>
+                    <h1 className='my-3 text-4xl lg:text-6xl font-bold lg:w-3/4 text-secondary'>Best Agency For Your Pet <span className='round-box'></span></h1>
                     <p className='my-5 text-justify lg:w-3/4 text-gray-600'>We've been setting new standards for pet-care facilities. Individual suites are offered in all CarePress locations, and they are spotless and climate controlled, with excellent food, bedding, and a broad variety of tailored activities and services. You can rest assured that your dog is in the best, most qualified hands in the industry with CarePress.We've been providing entertaining and dependable dog care services to parents and puppies since 1999.</p>
                     <div className='grid grid-cols-2 gap-4 lg:w-3/4'>
                         <div className='flex items-center gap-3'>
