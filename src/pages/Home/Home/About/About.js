@@ -6,7 +6,7 @@ import { HiOutlineCheckCircle } from "react-icons/hi";
 const About = () => {
     return (
         <div className='mx-[8%] my-9'>
-            <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2'>
+            <div className='grid grid-cols-1 lg:grid-cols-2'>
                 <div className='flex items-center'>
                     <div>
                     <img src={aboutImg} alt="" />
