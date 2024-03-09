@@ -6,7 +6,7 @@ import featureTwo from '../../../assets/features-2.png';
 
 const Features = () => {
     return (
-        <div className='my-9 bg-gray-200 py-16 px-5'>
+        <div className=' bg-[#F4F2EF] py-16 px-5'>
             <div>
                 <div className='grid grid-cols-1 lg:grid-cols-2 items-center'>
                     <div className='flex'>
