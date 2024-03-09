@@ -37,3 +37,8 @@ code {
 .footer-bg{
   background-image: url('https://i.ibb.co/5kgQvjw/footer-bg.png');
 }
+
+.about-banner{
+  background-image: url('https://i.ibb.co/grG2YRP/about-banner.png');
+  background-size: cover;
+}
