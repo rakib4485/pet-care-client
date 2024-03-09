@@ -1,5 +1,6 @@
 import React from 'react';
 import { FaFacebook, FaInstagram, FaTwitter} from "react-icons/fa";
+import { Link } from 'react-router-dom';
 
 
 const Footer = () => {
@@ -9,9 +10,9 @@ const Footer = () => {
                 <div>
                     <h1>Company Name</h1>
                     <div className='flex items-center gap-8 mt-5'>
-                        <p className='about-bg p-2 rounded-md'><FaFacebook  className='text-white'/></p>
-                        <p className='about-bg p-2 rounded-md'><FaInstagram  className='text-white'/></p>
-                        <p className='about-bg p-2 rounded-md'><FaTwitter className='text-white'/></p>
+                        <Link className='about-bg p-2 rounded-md'><FaFacebook  className='text-white'/></Link>
+                        <Link className='about-bg p-2 rounded-md'><FaInstagram  className='text-white'/></Link>
+                        <Link className='about-bg p-2 rounded-md'><FaTwitter className='text-white'/></Link>
                     </div>
                 </div>
                 <div>
