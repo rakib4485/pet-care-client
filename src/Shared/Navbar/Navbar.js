@@ -14,7 +14,7 @@ const NavbarComponent = () => {
     <Link to="/about" className="text-white">
       About
     </Link>
-    <Link to="/service" className="text-white">
+    <Link to="/services" className="text-white">
       Services
     </Link>
     <Link to="/contact" className="text-white">
