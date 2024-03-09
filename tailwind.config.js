@@ -6,6 +6,19 @@ module.exports = {
     "./src/**/*.{js,ts,jsx,tsx}",
     "node_modules/keep-react/**/*.{js,jsx,ts,tsx}"
   ],
+  daisyui: {
+    themes: [
+      {
+        doctortheme: {
+          primary: "#FF4880",
+          secondary: "#393D72",
+          accent: "#8FC424",
+          neutral: "#0FCFEC",
+
+        }
+      }
+    ]
+  },
   theme: {
     extend: {
       keyframes: {
