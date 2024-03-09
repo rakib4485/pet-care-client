@@ -6,15 +6,17 @@ import featureTwo from '../../../assets/features-2.png';
 
 const Features = () => {
     return (
-        <div className=' bg-[#F4F2EF] py-16 px-5'>
+        <div className=' bg-[#F4F2EF] py-16 px-10'>
             <div>
-                <div className='grid grid-cols-1 lg:grid-cols-2 items-center'>
+                <div className='grid grid-cols-1 lg:grid-cols-2 items-center gap-8'>
                     <div className='flex'>
-                        {/* <img className='' src={dogEat} alt="" /> */}
-                        <img src={featureImg} alt="" />
+                        <div className='relative'>
+                        <img src={featureImg} alt="" className='ml-5'/>
+                        <img className='absolute bottom-4 -left-36 z-50' src={dogEat} alt="" />
+                        </div>
                     </div>
                     <div>
-                        <h1 className='title-color font-bold text-2xl'>// Core Features //</h1>
+                        <h1 className='title-color font-bold text-2xl'>// <span className='mx-3'>Core Features</span> //</h1>
                         <h1 className='my-3 text-4xl lg:text-6xl font-bold' style={{color: '#393d72'}}>More Than Just A Pet Store & Care <span className='round-box'></span></h1>
                         <div className='mt-6'>
                                 <div className='flex gap-6'>

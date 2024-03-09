@@ -6,6 +6,7 @@ module.exports = {
     "./src/**/*.{js,ts,jsx,tsx}",
     "node_modules/keep-react/**/*.{js,jsx,ts,tsx}"
   ],
+
   daisyui: {
     themes: [
       {
@@ -25,7 +26,11 @@ module.exports = {
         wiggle: {
           '0%, 100%': { transform: 'rotate(-10deg)' },
           '50%': { transform: 'rotate(10deg)' },
-        }
+        },
+        faq: {
+          '0%,100%': {transform: 'rotate(20deg)', opacity: '0.1'},
+          '50%' : {transform: 'rotate(360deg)', opacity: '1'},
+        },
       }
     },
   },
