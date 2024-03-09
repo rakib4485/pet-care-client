@@ -3,7 +3,7 @@ import aboutImg from '../../../../assets/about-1.png';
 import { HiOutlineCheckCircle } from "react-icons/hi";
 
 
-const About = () => {
+const HomeAbout = () => {
     return (
         <div className='mx-[8%] my-9'>
             <div className='grid grid-cols-1 lg:grid-cols-2'>
@@ -59,4 +59,4 @@ const About = () => {
     );
 };
 
-export default About;
+export default HomeAbout;
