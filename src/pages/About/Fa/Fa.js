@@ -7,9 +7,9 @@ import faqBottom from '../../../assets/faq-bottom-image.jpg'
 
 const Fa = () => {
     return (
-        <div className='mx-[8%] grid md:grid-cols-2 gap-10 items-center'>
+        <div className='mx-[8%] grid grid-cols-2 gap-10 items-center mt-28'>
             <div>
-            <h2 className="text-primary text-2xl font-bold">// <span className='mx-3'>Faq</span> //</h2>
+            <h2 className="text-primary text-2xl font-bold">{'//'} <span className='mx-3'>Faq</span> {'//'}</h2>
             <h2 className="text-6xl font-bold text-secondary">Get Every Answer</h2>
             <h2 className="text-6xl font-bold text-secondary">From Here</h2>
             <div className='mt-10'>

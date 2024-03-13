@@ -42,3 +42,12 @@ code {
   background-image: url('https://i.ibb.co/grG2YRP/about-banner.png');
   background-size: cover;
 }
+
+.choose-titles{
+  color: #393d72;
+}
+
+.awards-bg{
+  background-image: url('https://i.ibb.co/5Wv3Mjf/award.png');
+  background-size: cover;
+}
