@@ -1,9 +1,10 @@
 import React from 'react';
+import ContactBanner from '../ContactBanner/ContactBanner';
 
 const Contact = () => {
     return (
         <div>
-            <h1>This is Contact</h1>
+            <ContactBanner/>
         </div>
     );
 };
