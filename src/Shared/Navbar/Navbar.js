@@ -17,6 +17,12 @@ const NavbarComponent = () => {
     <Link to="/services" className="text-white">
       Services
     </Link>
+    <Link to="/appointments" className="text-white">
+      Appointment
+    </Link>
+    <Link to="/shop" className="text-white">
+      Shop
+    </Link>
     <Link to="/contact" className="text-white">
       Contact
     </Link>
@@ -34,6 +40,9 @@ const NavbarComponent = () => {
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-4">
             {menuItems}
+            <Link to="/login" className="text-white">
+              Login
+            </Link>
           </div>
           {/* Mobile Navigation */}
           <div className="md:hidden flex items-center">
