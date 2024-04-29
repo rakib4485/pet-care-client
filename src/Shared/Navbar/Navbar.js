@@ -1,8 +1,16 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
+import { AuthContext } from '../../contexts/AuthProvider';
 
 const NavbarComponent = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const { user, logOut } = useContext(AuthContext);
+
+  const handleLogOut = () => {
+    logOut()
+      .then(() => { })
+      .catch(error => console.log(error))
+  }
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
@@ -38,11 +46,18 @@ const NavbarComponent = () => {
             </Link>
           </div>
           {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center space-x-4">
+          <div className="hidden md:flex items-center space-x-4 text-white">
             {menuItems}
-            <Link to="/login" className="text-white">
-              Login
-            </Link>
+            <div className="navbar-end hidden md:flex">
+                    {user?.uid ?
+                        <>
+                            <Link className='mr-4' to="/dashboard">Dashboard</Link>
+                            <Link onClick={handleLogOut}>Log out</Link>
+                        </>
+                        :
+                        <Link to='/login'>Login</Link>
+                    }
+                </div>
           </div>
           {/* Mobile Navigation */}
           <div className="md:hidden flex items-center">
@@ -82,7 +97,18 @@ const NavbarComponent = () => {
               <div className="bg-gray-800 w-3/4 h-full">
                 <div className="flex flex-col justify-center items-start h-full space-y-4">
                   {menuItems}
+                  <div className="md:hidden text-white">
+                    {user?.uid ?
+                      <>
+                        <Link className='mr-4' to="/dashboard">Dashboard</Link>
+                        <div onClick={handleLogOut}><Link>Log out</Link></div>
+                      </>
+                      :
+                      <Link to='/login'>Login</Link>
+                    }
+                  </div>
                 </div>
+
               </div>
               <div
                 className="bg-black opacity-50 w-full h-full cursor-pointer"

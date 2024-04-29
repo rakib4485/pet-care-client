@@ -11,6 +11,7 @@ import ProductDetails from "../pages/ProductDetails/ProductDetails";
 import AuthenticationLayout from "../layout/AuthenticationLayout";
 import Login from "../pages/Login/Login";
 import Signup from "../pages/Signup/Signup";
+import SingleDoctor from "../pages/Appointments/SingleDoctor/SingleDoctor";
 
 export const router = createBrowserRouter([
     {
@@ -42,6 +43,13 @@ export const router = createBrowserRouter([
                 element: <ProductDetails/>,
                 loader: ({params}) => {
                     return fetch(`http://localhost:5000/products/${params.id}`);
+                }
+            },
+            {
+                path: '/doctors/:id',
+                element: <SingleDoctor/>,
+                loader: ({params}) => {
+                    return fetch(`http://localhost:5000/appointmentOption/${params.id}`);
                 }
             },
             {

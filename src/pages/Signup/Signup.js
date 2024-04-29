@@ -1,9 +1,85 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import loginImg from '../../assets/login.jpg'
 import { FcGoogle } from "react-icons/fc";
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { AuthContext } from '../../contexts/AuthProvider';
 
 const Signup = () => {
+
+    const { createUser, updateUser, googleSignIn } = useContext(AuthContext);
+    const navigate = useNavigate();
+
+    const handleSignup = (event) => {
+        event.preventDefault();
+
+
+        const form = event.target;
+        const name = form.name.value;
+        const image = form.image.files[0];
+        const email = form.email.value;
+        const password = form.password.value;
+        const role = 'user';
+        const user = {
+             image, email, role, password
+        }
+        console.log(user)
+
+        const formData = new FormData();
+        formData.append('image', image);
+        const url = `https://api.imgbb.com/1/upload?key=c0a6c5eff4efffdee5df0347dc585c96`;
+        fetch(url, {
+            method: "POST",
+            body: formData
+        })
+            .then(res => res.json())
+            .then(imgData => {
+                if (imgData.success) {
+                    const userInfo = {
+                        displayName: name,
+                        photoURL: imgData.data.url
+                    }
+
+                    createUser(email, password)
+                        .then(result => {
+                            const user = result.user;
+                            console.log(user);
+                            updateUser(userInfo)
+                                .then(() => {
+                                    saveUser(name, email, role);
+                                })
+                                .then(err => console.log(err))
+                        })
+                        .catch(err => console.error(err))
+
+                }
+            })
+    }
+
+    const handleGoogleSignIn = () => {
+        googleSignIn()
+        .then(result => {
+          const user = result.user;
+          console.log(user);
+          const role='user';
+          saveUser(user.displayName, user.email, role);
+        })
+        .catch(error => console.error(error))
+      }
+
+    const saveUser = (name, email, role) => {
+        const user = { name, email, role };
+        fetch('http://localhost:5000/users', {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(user)
+        })
+            .then(res => res.json())
+            .then(data => {
+                navigate('/')
+            })
+    }
     return (
         <div className='grid grid-cols-2'>
             <div className='mx-[10%]'>
@@ -11,13 +87,13 @@ const Signup = () => {
                     <h2 className="text-5xl font-bold text-secondary">Get Started</h2>
                     <p>Sign up to access all feature</p>
                     <div className="form-control mt-6 ">
-                        <button className="flex items-center justify-center btn btn-secondary btn-outline text-lg">
+                        <button onClick={handleGoogleSignIn} className="flex items-center justify-center btn btn-secondary btn-outline text-lg">
                             <FcGoogle className="mr-1 text-green-800"></FcGoogle> Login With Google
                         </button>
                     </div>
                     <div className="divider">OR</div>
                     <div>
-                        <form className="">
+                        <form className="" onSubmit={handleSignup}>
 
                             <div className="form-control">
                                 <label className="label">
@@ -37,7 +113,7 @@ const Signup = () => {
                                 <input
                                     type="file"
                                     name="image"
-                                    placeholder="email"
+                                    placeholder=""
                                     className="input input-bordered"
                                 />
                             </div>
@@ -70,7 +146,7 @@ const Signup = () => {
                             </div>
 
                             <div className="form-control mt-6">
-                                <button className="btn btn-primary text-white">Sign up</button>
+                                <input type='submit' value='sign up' className="btn btn-primary text-white"/>
                             </div>
 
                         </form>
@@ -82,7 +158,7 @@ const Signup = () => {
             </div>
             <div className='relative'>
                 <div className='h-full'>
-                    <img src={loginImg} alt="" className='h-full'/>
+                    <img src={loginImg} alt="" className='h-full' />
                 </div>
                 <div className='absolute bottom-5 mx-[10%]'>
                     <h2 className="text-4xl text-white font-semibold">Get the Best Service for Your Beloved Pet</h2>
