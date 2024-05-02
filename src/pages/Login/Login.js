@@ -1,22 +1,68 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import loginImg from '../../assets/login.jpg'
 import { FcGoogle } from "react-icons/fc";
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { AuthContext } from '../../contexts/AuthProvider';
 
 const Login = () => {
+    const {signIn, googleSignIn} = useContext(AuthContext);
+    const navigate = useNavigate()
+
+    const handleLogin = event =>{
+        event.preventDefault();
+
+        const form = event.target;
+        const email = form.email.value;
+        const password = form.password.value;
+        signIn(email, password)
+        .then(result =>{
+          const user = result.user;
+          console.log(user);
+          navigate('/')
+        })
+        .then(err => {
+          console.error(err);
+        })
+        form.reset();
+    }
+
+    const handleGoogleSignIn = () =>{
+        googleSignIn()
+        .then(result => {
+          const user = result.user;
+          saveUser(user.displayName, user.email);
+        })
+        .then(error => console.error(error))
+    }
+
+    const saveUser = (name, email) => {
+        const user = {name, email};
+        fetch('http://localhost:5000/users', {
+            method: 'POST',
+            headers: {
+              'content-type': 'application/json'
+            },
+            body: JSON.stringify(user)
+          })
+          .then(res => res.json())
+          .then(data => {
+            navigate('/')
+          })
+      }
+
     return (
         <div className='grid grid-cols-2 items-center'>
             <div className='mx-[10%]'>
                 <h2 className="text-5xl font-bold text-secondary">Welcome Back!!</h2>
                 <p>Sign in to continue your journey</p>
                 <div className="form-control mt-6 ">
-                    <button className="flex items-center justify-center btn btn-secondary btn-outline text-lg">
+                    <button onClick={handleGoogleSignIn} className="flex items-center justify-center btn btn-secondary btn-outline text-lg">
                         <FcGoogle className="mr-1 text-green-800"></FcGoogle> Login With Google
                     </button>
                 </div>
                 <div className="divider">OR</div>
                 <div>
-                    <form className="">
+                    <form className="" onSubmit={handleLogin}>
 
                         <div className="form-control">
                             <label className="label">
