@@ -4,6 +4,17 @@ import AppointmentButton from '../../../components/AppointmentButton/Appointment
 const ProductOrder = ({ product }) => {
     const { name, img, price } = product;
     const [quantity, setQuantity] = useState(0);
+
+    const plusQuantity = () => {
+        setQuantity(quantity + 1);
+    }
+
+    const decreseQuantity = () => {
+        if(quantity >= 1){
+            setQuantity(quantity - 1);
+        }
+        
+    }
     return (
         <div className='mx-[10%]'>
             <div className="grid grid-cols-2 gap-6 items-center">
@@ -20,17 +31,18 @@ const ProductOrder = ({ product }) => {
                         <div className='border rounded-3xl w-[150px] h-10'>
                             <div className='flex items-center justify-between'>
                                 <div className='h-10 w-10 rounded-full border text-center hover:bg-primary cursor-pointer'>
-                                    <span className=' text-3xl '>-</span>
+                                    <button className=' text-3xl ' onClick={decreseQuantity}>-</button>
                                 </div>
                                 <div>
                                     <span>{quantity}</span>
                                 </div>
                                 <div className='h-10 w-10 rounded-full border text-center hover:bg-primary cursor-pointer'>
-                                    <span className=' text-3xl'>+</span>
+                                    <button className=' text-3xl' onClick={plusQuantity}>+</button>
                                 </div>
                             </div>
                         </div>
                         <div>
+
                             <AppointmentButton baseColor={`bg-[#FF4880]`} HoverColor={`bg-[#8FC424]`} buttonText={`ADD TO CART`}/>
                         </div>
                     </div>

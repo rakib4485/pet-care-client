@@ -11,6 +11,7 @@ const NavbarComponent = () => {
       .then(() => { })
       .catch(error => console.log(error))
   }
+  
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
