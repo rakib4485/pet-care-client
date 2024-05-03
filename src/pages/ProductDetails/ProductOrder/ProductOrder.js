@@ -1,19 +1,47 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import AppointmentButton from '../../../components/AppointmentButton/AppointmentButton';
+import { AuthContext } from '../../../contexts/AuthProvider';
+import { useNavigate } from 'react-router-dom';
 
-const ProductOrder = ({ product }) => {
-    const { name, img, price } = product;
-    const [quantity, setQuantity] = useState(0);
+const ProductOrder = ({ product }) => { 
+    const {user} = useContext(AuthContext)
+    const { _id, name, img, price } = product;
+    const [quantity, setQuantity] = useState(1);
+    const navigate = useNavigate()
 
     const plusQuantity = () => {
         setQuantity(quantity + 1);
     }
 
     const decreseQuantity = () => {
-        if(quantity >= 1){
+        if(quantity > 1){
             setQuantity(quantity - 1);
         }
         
+    }
+
+    const uploadCart = event =>{
+        const customerEmail = user?.email;
+        const cart = {
+            productName: name,
+            productId: _id,
+            price,
+            quantity,
+            img,
+            customerEmail
+        }
+
+        fetch('http://localhost:5000/carts', {
+            method: 'POST',
+            headers: {
+              'content-type': 'application/json'
+            },
+            body: JSON.stringify(cart)
+          })
+          .then(res => res.json())
+          .then(data => {
+            navigate('/')
+          })
     }
     return (
         <div className='mx-[10%]'>
@@ -41,7 +69,7 @@ const ProductOrder = ({ product }) => {
                                 </div>
                             </div>
                         </div>
-                        <div>
+                        <div onClick={uploadCart}>
 
                             <AppointmentButton baseColor={`bg-[#FF4880]`} HoverColor={`bg-[#8FC424]`} buttonText={`ADD TO CART`}/>
                         </div>

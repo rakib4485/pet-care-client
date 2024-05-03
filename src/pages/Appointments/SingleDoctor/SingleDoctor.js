@@ -16,7 +16,7 @@ const SingleDoctor = () => {
             <div className='' style={{ background: `url(${headerImg})`, backgroundSize: "cover", backgroundPosition: 'center' }}>
                 <div className=" py-24 px-[10%]">
                     <h2 className='text-4xl'>Doctors</h2>
-                    <p><Link to='/' className='hover:text-primary'>Home</Link> <span className='mx-2'>{`>`}</span><Link to='/appointments' className='hover:text-primary'>Appointments</Link> <span className='mx-2'>{`>`}</span>{name}</p>
+                    <p className='font-semibold'><Link to='/' className='hover:text-primary font-semibold'>Home</Link> <span className='mx-1'>{`->`}</span><Link to='/appointments' className='hover:text-primary font-semibold'>Appointments</Link> <span className='mx-1 font-semibold'>{`->`}</span>{name}</p>
                 </div>
             </div>
             <div className="mx-[10%] my-20">
