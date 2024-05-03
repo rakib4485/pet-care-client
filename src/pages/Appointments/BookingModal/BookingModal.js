@@ -27,7 +27,7 @@ const BookingModal = ({ treatment, setTreatment }) => {
           meet,
         }
     
-        fetch('https://medwin-cares-server-two.vercel.app/bookings', {
+        fetch('http://localhost:5000/bookings', {
           method: 'POST',
           headers: {
             'content-type': 'application/json'
@@ -37,15 +37,16 @@ const BookingModal = ({ treatment, setTreatment }) => {
           .then(res => res.json())
           .then(data => {
             console.log(data);
-            if (data.acknowledged) {
-              setTreatment(null);
-            //   toast.success('Booking Confirmed');
-            //   refetch();
-            //   navigate('/dashboard ')
-            }
-            else {
-            //   toast.error(data.message)
-            }
+            window.location.replace(data.url)
+            // if (data.acknowledged) {
+            //   setTreatment(null);
+            // //   toast.success('Booking Confirmed');
+            // //   refetch();
+            // //   navigate('/dashboard ')
+            // }
+            // else {
+            // //   toast.error(data.message)
+            // }
           })
       }
     return (
