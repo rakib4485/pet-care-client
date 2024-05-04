@@ -1,23 +1,26 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { AuthContext } from '../../../contexts/AuthProvider';
 import { format } from 'date-fns';
+import { DayPicker } from 'react-day-picker';
+import 'react-day-picker/dist/style.css';
 
 const BookingModal = ({ treatment, setTreatment }) => {
     const {user} = useContext(AuthContext)
     const { names: treatmentName, slots, prices, meet, email: doctorEmail } = treatment;
-    // const date = format(selectedDate, 'PP');
+    const [selectedDate, setSelectedDate] = useState(new Date())
+    const date = format(selectedDate, 'PP');
     const handleBooking = event => {
         event.preventDefault();
         const form = event.target;
         const slot = form.slot.value;
         const type = form.type.value;
-        const name = form.name.value;
+        // const name = form.name.value;
         const email = form.email.value;
         const phone = form.phone.value;
         const booking = {
-        //   appointmentDate: date,
+          appointmentDate: date,
           treatment: treatmentName,
-          patient: name,
+          patient: user?.displayName,
           slot,
           type,
           email,
@@ -59,6 +62,14 @@ const BookingModal = ({ treatment, setTreatment }) => {
           <p>{doctorEmail}</p>
           <form onSubmit={handleBooking} className='grid grid-cols-1 gap-3 mt-10'>
             {/* <input type="text" value={date} disabled className="input input-bordered w-full" /> */}
+            <div className="mr-6">
+            <DayPicker
+              mode="single"
+              selected={selectedDate}
+              onSelect={setSelectedDate}
+            />
+          </div>
+
             <select name='slot' className="select select-bordered w-full">
 
               {
