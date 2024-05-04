@@ -12,6 +12,7 @@ import AuthenticationLayout from "../layout/AuthenticationLayout";
 import Login from "../pages/Login/Login";
 import Signup from "../pages/Signup/Signup";
 import SingleDoctor from "../pages/Appointments/SingleDoctor/SingleDoctor";
+import AppointmentPaymentSuccess from "../pages/Appointments/AppointmentPaymentSuccess/AppointmentPaymentSuccess";
 
 export const router = createBrowserRouter([
     {
@@ -56,6 +57,10 @@ export const router = createBrowserRouter([
                 path: '/appointments',
                 element: <Appointments/>
             },
+            {
+                path: '/appointmentPayment/success/:tranId',
+                element: <AppointmentPaymentSuccess/>
+            }
         ]
     },
     {
