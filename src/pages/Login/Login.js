@@ -1,12 +1,14 @@
 import React, { useContext } from 'react';
 import loginImg from '../../assets/login.jpg'
 import { FcGoogle } from "react-icons/fc";
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../contexts/AuthProvider';
 
 const Login = () => {
     const {signIn, googleSignIn} = useContext(AuthContext);
     const navigate = useNavigate()
+    const location = useLocation();
+    const from = location.state?.from?.pathname || '/'
 
     const handleLogin = event =>{
         event.preventDefault();
@@ -18,7 +20,7 @@ const Login = () => {
         .then(result =>{
           const user = result.user;
           console.log(user);
-          navigate('/')
+          navigate(from, {replace: true});
         })
         .then(err => {
           console.error(err);
@@ -36,7 +38,7 @@ const Login = () => {
     }
 
     const saveUser = (name, email) => {
-        const user = {name, email};
+        const user = {name, email, role: 'user'};
         fetch('http://localhost:5000/users', {
             method: 'POST',
             headers: {
@@ -46,7 +48,7 @@ const Login = () => {
           })
           .then(res => res.json())
           .then(data => {
-            navigate('/')
+            navigate(from, {replace: true});
           })
       }
 

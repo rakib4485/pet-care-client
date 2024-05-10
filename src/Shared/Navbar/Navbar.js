@@ -47,7 +47,7 @@ const {data: carts = []} = useQuery({
     <Link to="/contact" className="text-white">
       Contact
     </Link>
-    <Link to="/contact" className="text-white mr-3">
+    <Link to="/carts" className="text-white mr-3">
       <div className='mr-5'>
         <IoBagHandleOutline className='text-2xl hover:text-primary absolute' />
         <div className='h-5 w-5 rounded-full bg-primary flex justify-center items-center relative -top-2 -right-4'><span>{carts.length}</span></div>
@@ -61,7 +61,7 @@ const {data: carts = []} = useQuery({
         <div className="container mx-auto flex justify-between items-center">
           <div className="flex items-center">
             <Link to="" className="text-white font-bold text-xl flex items-center gap-2">
-              <img src={logo} alt=''className='w-8'/>MyWebsite
+              <img src={logo} alt=''className='w-8'/>PawsitiveCare Hub
             </Link>
           </div>
           {/* Desktop Navigation */}

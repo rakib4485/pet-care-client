@@ -13,6 +13,15 @@ import Login from "../pages/Login/Login";
 import Signup from "../pages/Signup/Signup";
 import SingleDoctor from "../pages/Appointments/SingleDoctor/SingleDoctor";
 import AppointmentPaymentSuccess from "../pages/Appointments/AppointmentPaymentSuccess/AppointmentPaymentSuccess";
+import Carts from "../pages/Carts/Carts";
+import PrivateRoutes from "./PrivateRoutes";
+import DashboardLayout from "../layout/DashboardLayout";
+import Checkout from "../pages/Checkout/Checkout";
+import MyAppointment from "../pages/Dashboard/MyAppointment/MyAppointment";
+import OrderPaymentSuccess from "../pages/Checkout/OrderPaymentSuccess";
+import MyOrder from "../pages/Dashboard/MyOrder/MyOrder";
+import Vendors from "../pages/Dashboard/Vendors/Vendors";
+import AddDoctor from "../pages/Dashboard/AddDoctor/AddDoctor";
 
 export const router = createBrowserRouter([
     {
@@ -41,14 +50,14 @@ export const router = createBrowserRouter([
             },
             {
                 path: '/products/:id',
-                element: <ProductDetails/>,
+                element: <PrivateRoutes><ProductDetails/></PrivateRoutes>,
                 loader: ({params}) => {
                     return fetch(`http://localhost:5000/products/${params.id}`);
                 }
             },
             {
                 path: '/doctors/:id',
-                element: <SingleDoctor/>,
+                element: <PrivateRoutes><SingleDoctor/></PrivateRoutes>,
                 loader: ({params}) => {
                     return fetch(`http://localhost:5000/appointmentOption/${params.id}`);
                 }
@@ -59,8 +68,20 @@ export const router = createBrowserRouter([
             },
             {
                 path: '/appointmentPayment/success/:tranId',
-                element: <AppointmentPaymentSuccess/>
-            }
+                element: <PrivateRoutes><AppointmentPaymentSuccess/></PrivateRoutes>
+            },
+            {
+                path: '/orderPayment/success/:tranId',
+                element: <OrderPaymentSuccess/>
+            },
+            {
+                path: '/carts',
+                element: <Carts/>
+            },
+            {
+                path: '/checkout',
+                element: <PrivateRoutes><Checkout/></PrivateRoutes>
+            },
         ]
     },
     {
@@ -81,6 +102,28 @@ export const router = createBrowserRouter([
                 path: '/signup',
                 element: <Signup/>
             }
+        ]
+    },
+    {
+        path: '/dashboard',
+        element: <PrivateRoutes><DashboardLayout/></PrivateRoutes>,
+        children: [
+            {
+                path: '/dashboard',
+                element: <MyAppointment/>
+            },
+            {
+                path: '/dashboard/my-order',
+                element: <MyOrder/>
+            },
+            {
+                path: '/dashboard/vendors',
+                element: <Vendors/>
+            },
+            {
+                path: '/dashboard/add-doctor',
+                element: <AddDoctor/>
+            },
         ]
     },
     
