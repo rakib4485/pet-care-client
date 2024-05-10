@@ -5,11 +5,11 @@ import { Navigate, useNavigate } from 'react-router-dom';
 const AppointmentPaymentSuccess = () => {
     const navigate = useNavigate();
     toast.success('Payment successfully Done');
-    navigate('/')
+    navigate('/dashboard')
 
     return (
         <div>
-            <Navigate to='/'></Navigate>
+            <Navigate to='/dashboard'></Navigate>
         </div>
     );
 };

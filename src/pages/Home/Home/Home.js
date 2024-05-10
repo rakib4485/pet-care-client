@@ -6,6 +6,7 @@ import Features from '../Features/Features';
 import Testimonial from '../Testimonial/Testimonial';
 import HomeAbout from './HomeAbout/HomeAbout';
 import HomeProducts from '../HomeProducts/HomeProducts';
+import HomeDoctor from '../HomeDoctor/HomeDoctor';
 
 const Home = () => {
     return (
@@ -16,6 +17,7 @@ const Home = () => {
             <Shop/>
             <HomeProducts/>
             <Features/>
+            <HomeDoctor/>
             <Testimonial/>
         </div>
     );

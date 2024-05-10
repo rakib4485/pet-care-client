@@ -8,7 +8,7 @@ import { Book, Pen, Phone, SignIn, User } from 'phosphor-react'
 
 const SingleDoctor = () => {
     const doctor = useLoaderData();
-    const { name, image, prices, slots } = doctor;
+    const { _id, name, image, prices, slots } = doctor;
     const [treatment, setTreatment] = useState(null);
     console.log(treatment);
     return (

@@ -40,7 +40,7 @@ const ProductOrder = ({ product }) => {
           })
           .then(res => res.json())
           .then(data => {
-            navigate('/')
+            navigate('/carts')
           })
     }
     return (

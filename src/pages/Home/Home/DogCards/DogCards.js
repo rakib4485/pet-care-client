@@ -4,17 +4,17 @@ const DogCards = () => {
     const cardItems = [
         {
             id: 1,
-            title: 'Dog Training',
+            title: 'Appointment scheduling',
             description: 'We provide a range of training programs, ranging from basic and advanced obedience to training your new puppy.'
         },
         {
             id: 2,
-            title: 'Dog Training',
+            title: 'Pet Medicine',
             description: 'We provide a range of training programs, ranging from basic and advanced obedience to training your new puppy.'
         },
         {
             id: 3,
-            title: 'Dog Training',
+            title: 'Pet Food',
             description: 'We provide a range of training programs, ranging from basic and advanced obedience to training your new puppy.'
         },
     ]

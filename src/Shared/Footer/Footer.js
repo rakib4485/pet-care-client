@@ -1,6 +1,7 @@
 import React from 'react';
 import { FaFacebook, FaInstagram, FaTwitter} from "react-icons/fa";
 import { Link } from 'react-router-dom';
+import logo from '../../assets/logo1.png'
 
 
 const Footer = () => {
@@ -8,7 +9,11 @@ const Footer = () => {
         <div className='footer-bg py-5 mt-9'>
             <div className='grid grid-cols-1 md:grid-cols-3 mt-14 p-3'>
                 <div>
-                    <h1>Company Name</h1>
+                <div className="flex items-center">
+            <Link to="" className="text-white font-bold text-xl flex items-center gap-2">
+              <img src={logo} alt=''className='w-8'/><span className='text-secondary'>PawsitiveCare Hub</span>
+            </Link>
+          </div>
                     <div className='flex items-center gap-8 mt-5'>
                         <Link className='about-bg p-2 rounded-md'><FaFacebook  className='text-white'/></Link>
                         <Link className='about-bg p-2 rounded-md'><FaInstagram  className='text-white'/></Link>

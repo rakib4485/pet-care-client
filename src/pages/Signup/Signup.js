@@ -1,13 +1,15 @@
 import React, { useContext } from 'react';
 import loginImg from '../../assets/login.jpg'
 import { FcGoogle } from "react-icons/fc";
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../contexts/AuthProvider';
 
 const Signup = () => {
 
     const { createUser, updateUser, googleSignIn } = useContext(AuthContext);
     const navigate = useNavigate();
+    const location = useLocation();
+    const from = location.state?.from?.pathname || '/'
 
     const handleSignup = (event) => {
         event.preventDefault();
@@ -77,7 +79,7 @@ const Signup = () => {
         })
             .then(res => res.json())
             .then(data => {
-                navigate('/')
+                navigate(from, {replace: true});
             })
     }
     return (

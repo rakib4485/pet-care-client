@@ -3,26 +3,37 @@ import { AuthContext } from '../../../contexts/AuthProvider';
 import { format } from 'date-fns';
 import { DayPicker } from 'react-day-picker';
 import 'react-day-picker/dist/style.css';
+import { useQuery } from '@tanstack/react-query';
+import toast from 'react-hot-toast';
 
 const BookingModal = ({ treatment, setTreatment }) => {
     const {user} = useContext(AuthContext)
-    const { names: treatmentName, slots, prices, meet, email: doctorEmail } = treatment;
+    const { _id,name,  prices, meet, email: doctorEmail } = treatment;
     const [selectedDate, setSelectedDate] = useState(new Date())
     const date = format(selectedDate, 'PP');
+
+    const {data: slots = []} = useQuery({
+      queryKey: ['slot', selectedDate],
+      queryFn: async() => {
+        const res = await fetch(`http://localhost:5000/appointmentSlots/${doctorEmail}?date=${date}`);
+        const data = await res.json();
+        return data.slots;
+      }
+    })
+    console.log(slots);
     const handleBooking = event => {
         event.preventDefault();
         const form = event.target;
         const slot = form.slot.value;
-        const type = form.type.value;
+        // const type = form.type.value;
         // const name = form.name.value;
         const email = form.email.value;
         const phone = form.phone.value;
         const booking = {
           appointmentDate: date,
-          treatment: treatmentName,
+          treatment: name,
           patient: user?.displayName,
           slot,
-          type,
           email,
           doctorEmail,
           phone,
@@ -40,16 +51,13 @@ const BookingModal = ({ treatment, setTreatment }) => {
           .then(res => res.json())
           .then(data => {
             console.log(data);
-            window.location.replace(data.url)
-            // if (data.acknowledged) {
-            //   setTreatment(null);
-            // //   toast.success('Booking Confirmed');
-            // //   refetch();
-            // //   navigate('/dashboard ')
-            // }
-            // else {
-            // //   toast.error(data.message)
-            // }
+            
+            if (data.url) {
+              window.location.replace(data.url)
+            }
+            else {
+              toast.error(data.message)
+            }
           })
       }
     return (
@@ -58,7 +66,7 @@ const BookingModal = ({ treatment, setTreatment }) => {
       <div className="modal">
         <div className="modal-box relative">
           <label htmlFor="booking-modal" className="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
-          <h3 className="text-lg font-bold">{treatmentName}</h3>
+          <h3 className="text-lg font-bold">{name}</h3>
           <p>{doctorEmail}</p>
           <form onSubmit={handleBooking} className='grid grid-cols-1 gap-3 mt-10'>
             {/* <input type="text" value={date} disabled className="input input-bordered w-full" /> */}
@@ -76,11 +84,11 @@ const BookingModal = ({ treatment, setTreatment }) => {
                 slots.map((slot, i) => <option value={slot} key={i}>{slot}</option>)
               }
             </select>
-            <select name="type" className="select select-bordered w-full">
+            {/* <select name="type" className="select select-bordered w-full">
               <option disabled selected>Select Appointment Type</option>
               <option>Online</option>
               <option>Offline</option>
-            </select>
+            </select> */}
             <input name='name' type="text" defaultValue={user?.displayName} disabled placeholder="Full Name" className="input input-bordered w-full" />
             <input name='email' type="email" defaultValue={user?.email} disabled placeholder="Email" className="input input-bordered w-full" />
             <input name='phone' type="text" defaultValue={user?.phone} placeholder="Phone Number" className="input input-bordered w-full" />
