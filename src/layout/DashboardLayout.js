@@ -3,7 +3,7 @@ import NavbarComponent from '../Shared/Navbar/Navbar';
 import { Link, Outlet } from 'react-router-dom';
 import { AuthContext } from '../contexts/AuthProvider';
 import { FaGift, FaUserAlt } from 'react-icons/fa';
-import { MdEdit } from 'react-icons/md';
+import { MdDashboard, MdEdit } from 'react-icons/md';
 import { FaAddressBook, FaUserDoctor } from "react-icons/fa6";
 import { BsCartCheckFill } from 'react-icons/bs';
 
@@ -35,13 +35,13 @@ const DashboardLayout = () => {
       },
       body: JSON.stringify(seller)
     })
-    .then(res => res.json())
-    .then(data => {
-      if(data.modifiedCount > 0){
-        setDisabled(true);
-        closeModal('seller-modal');
-      }
-    })
+      .then(res => res.json())
+      .then(data => {
+        if (data.modifiedCount > 0) {
+          setDisabled(true);
+          closeModal('seller-modal');
+        }
+      })
   }
 
   const closeModal = (name) => {
@@ -50,7 +50,7 @@ const DashboardLayout = () => {
 
     // Hide the modal
     modal.close();
-};
+  };
   return (
     <div>
       <NavbarComponent />
@@ -90,7 +90,7 @@ const DashboardLayout = () => {
                   <button className="btn btn-xs btn-primary text-white" onClick={() => document.getElementById('seller-modal').showModal()} >Become a Seller</button>
                 </div>
               }
-              
+
               {/* {
                   (!isAdmin && !isDoctor && !isReception && !isRequest) &&
                   <button className="btn btn-xs bg-gradient-to-r from-cyan-500 to-blue-500" onClick={() => document.getElementById('doctor-modal').showModal()} disabled={disabled}>Doctor Request</button>
@@ -100,6 +100,9 @@ const DashboardLayout = () => {
             </div>
             <hr className='my-5' />
             <div className='text-lg'>
+              <>
+              <li><Link to='/dashboard/admin-dashboard'><MdDashboard /> Dashboard</Link></li>
+              </>
               {
                 <>
                   <li><Link to='/dashboard'><FaAddressBook />My Appointment</Link></li>
@@ -117,13 +120,21 @@ const DashboardLayout = () => {
               {
                 <>
                   <li><Link to='/dashboard/vendors'><FaGift />Vendors</Link></li>
-                  <li><Link to='/dashboard/add-doctor'><FaUserDoctor />Add a Doctor</Link></li>
                 </>
               }
               {
-                 <>
+                <>
+                  <li>
+                  <details>
+                    <summary className='flex items-center'><FaUserDoctor />Doctors</summary>
+                    <ul className="p-2">
+                      <li><Link to='/dashboard/doctors'><FaUserDoctor />Doctors</Link></li>
+                      <li><Link to='/dashboard/add-doctor'><FaUserDoctor />Add a Doctor</Link></li>
+                    </ul>
+                  </details>
+                  </li>
                   {/* <li><Link to='/dashboard/allusers'>Users List</Link></li> */}
-                  <li><Link to='/dashboard/doctors'><FaUserDoctor />Doctors</Link></li>
+                  {/* <li></li> */}
                   <li><Link to='/dashboard/products'>Products</Link></li>
                   {/* <li><Link to='/dashboard/products'>Doctor Request</Link></li> */}
                   <li><Link to='/dashboard/confirmation'>Confirmation Zone</Link></li>

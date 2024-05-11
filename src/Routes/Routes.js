@@ -22,6 +22,8 @@ import OrderPaymentSuccess from "../pages/Checkout/OrderPaymentSuccess";
 import MyOrder from "../pages/Dashboard/MyOrder/MyOrder";
 import Vendors from "../pages/Dashboard/Vendors/Vendors";
 import AddDoctor from "../pages/Dashboard/AddDoctor/AddDoctor";
+import AllDoctors from "../pages/Dashboard/AllDoctors/AllDoctors";
+import AdminDashboard from "../pages/Dashboard/AdminDashboard/AdminDashboard";
 
 export const router = createBrowserRouter([
     {
@@ -123,6 +125,14 @@ export const router = createBrowserRouter([
             {
                 path: '/dashboard/add-doctor',
                 element: <AddDoctor/>
+            },
+            {
+                path: '/dashboard/doctors',
+                element: <AllDoctors/>
+            },
+            {
+                path: '/dashboard/admin-dashboard',
+                element: <AdminDashboard/>
             },
         ]
     },

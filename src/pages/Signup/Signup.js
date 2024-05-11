@@ -45,9 +45,10 @@ const Signup = () => {
                         .then(result => {
                             const user = result.user;
                             console.log(user);
+                            const img=imgData.data.url
                             updateUser(userInfo)
                                 .then(() => {
-                                    saveUser(name, email, role);
+                                    saveUser(name, email, role, img);
                                 })
                                 .then(err => console.log(err))
                         })
@@ -63,13 +64,13 @@ const Signup = () => {
           const user = result.user;
           console.log(user);
           const role='user';
-          saveUser(user.displayName, user.email, role);
+          saveUser(user.displayName, user.email, role, user.photoURL);
         })
         .catch(error => console.error(error))
       }
 
-    const saveUser = (name, email, role) => {
-        const user = { name, email, role };
+    const saveUser = (name, email, role, image) => {
+        const user = { name, email, role, image };
         fetch('http://localhost:5000/users', {
             method: 'POST',
             headers: {
