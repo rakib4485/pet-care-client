@@ -32,13 +32,13 @@ const Login = () => {
         googleSignIn()
         .then(result => {
           const user = result.user;
-          saveUser(user.displayName, user.email);
+          saveUser(user.displayName, user.email, user.photoURL);
         })
         .then(error => console.error(error))
     }
 
-    const saveUser = (name, email) => {
-        const user = {name, email, role: 'user'};
+    const saveUser = (name, email, image) => {
+        const user = {name, email, image, role: 'user'};
         fetch('http://localhost:5000/users', {
             method: 'POST',
             headers: {
@@ -51,6 +51,7 @@ const Login = () => {
             navigate(from, {replace: true});
           })
       }
+      
 
     return (
         <div className='grid grid-cols-2 items-center'>
