@@ -52,10 +52,10 @@ const MyOrder = () => {
                                     <th>{i + 1}</th>
                                     <td><img src={product.img} alt='' className='w-12' /></td>
                                     <td>{product.productName}</td>
-                                    <td>{product.price}</td>
+                                    <td>{product.price * product.quantity}</td>
                                     <td>{product.quantity}</td>
                                     <td>{order.paymentType}</td>
-                                    <td>{delevaryDates('May 8, 2024')}</td>
+                                    <td>{delevaryDates(order.orderDate)}</td>
                                 </tr>))
                             })
                         }

@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 
 const ProductOrder = ({ product }) => { 
     const {user} = useContext(AuthContext)
-    const { _id, name, img, price } = product;
+    const { _id, name, img, price, sellerEmail } = product;
     const [quantity, setQuantity] = useState(1);
     const navigate = useNavigate()
 
@@ -28,7 +28,8 @@ const ProductOrder = ({ product }) => {
             price,
             quantity,
             img,
-            customerEmail
+            customerEmail,
+            sellerEmail
         }
 
         fetch('http://localhost:5000/carts', {

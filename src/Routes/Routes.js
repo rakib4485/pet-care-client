@@ -24,6 +24,8 @@ import Vendors from "../pages/Dashboard/Vendors/Vendors";
 import AddDoctor from "../pages/Dashboard/AddDoctor/AddDoctor";
 import AllDoctors from "../pages/Dashboard/AllDoctors/AllDoctors";
 import AdminDashboard from "../pages/Dashboard/AdminDashboard/AdminDashboard";
+import MyProducts from "../pages/Dashboard/MyProducts/MyProducts";
+import AddProduct from "../pages/Dashboard/AddProduct/AddProduct";
 
 export const router = createBrowserRouter([
     {
@@ -133,6 +135,14 @@ export const router = createBrowserRouter([
             {
                 path: '/dashboard/admin-dashboard',
                 element: <AdminDashboard/>
+            },
+            {
+                path: '/dashboard/my-products',
+                element: <MyProducts/>
+            },
+            {
+                path: '/dashboard/add-product',
+                element: <AddProduct/>
             },
         ]
     },
