@@ -6,6 +6,9 @@ import { FaGift, FaUserAlt } from 'react-icons/fa';
 import { MdDashboard, MdEdit } from 'react-icons/md';
 import { FaAddressBook, FaUserDoctor } from "react-icons/fa6";
 import { BsCartCheckFill } from 'react-icons/bs';
+import { AiOutlineProduct } from "react-icons/ai";
+import { HiSquare3Stack3D } from 'react-icons/hi2';
+import { BiMessageSquareAdd } from 'react-icons/bi';
 
 
 const DashboardLayout = () => {
@@ -130,6 +133,16 @@ const DashboardLayout = () => {
                     <ul className="p-2">
                       <li><Link to='/dashboard/doctors'><FaUserDoctor />Doctors</Link></li>
                       <li><Link to='/dashboard/add-doctor'><FaUserDoctor />Add a Doctor</Link></li>
+                    </ul>
+                  </details>
+                  </li>
+
+                  <li>
+                  <details>
+                    <summary className='flex items-center'><HiSquare3Stack3D />Products</summary>
+                    <ul className="p-2">
+                      <li><Link to='/dashboard/my-products'><HiSquare3Stack3D />My Products</Link></li>
+                      <li><Link to='/dashboard/add-product'><BiMessageSquareAdd />Add a Product</Link></li>
                     </ul>
                   </details>
                   </li>
