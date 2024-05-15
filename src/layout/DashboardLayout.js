@@ -3,17 +3,29 @@ import NavbarComponent from '../Shared/Navbar/Navbar';
 import { Link, Outlet } from 'react-router-dom';
 import { AuthContext } from '../contexts/AuthProvider';
 import { FaGift, FaUserAlt } from 'react-icons/fa';
-import { MdDashboard, MdEdit } from 'react-icons/md';
-import { FaAddressBook, FaUserDoctor } from "react-icons/fa6";
+import { MdBorderStyle, MdDashboard, MdEdit } from 'react-icons/md';
+import { FaAddressBook, FaBriefcaseMedical, FaUserDoctor } from "react-icons/fa6";
 import { BsCartCheckFill } from 'react-icons/bs';
 import { AiOutlineProduct } from "react-icons/ai";
 import { HiSquare3Stack3D } from 'react-icons/hi2';
 import { BiMessageSquareAdd } from 'react-icons/bi';
+import useAdmin from '../hookes/useAdmin';
+import useSeller from '../hookes/useSeller';
+import useDoctor from '../hookes/useDoctor';
 
 
 const DashboardLayout = () => {
   const { user } = useContext(AuthContext)
   const [disabled, setDisabled] = useState(false)
+
+  const [isDoctor] = useDoctor(user?.email);
+  const [isAdmin] = useAdmin(user?.email)
+  const [isSeller] = useSeller(user?.email)
+ 
+
+  console.log(isDoctor)
+  console.log(isSeller)
+
   const handleSellerRequest = event => {
     event.preventDefault();
     const form = event.target;
@@ -79,16 +91,17 @@ const DashboardLayout = () => {
                   }
                 </div>
                 {/* {(!isAdmin && !isDoctor) && */}
-                <MdEdit className='text-center text-2xl cursor-pointer z-[50]' onClick={() => document.getElementById('image-modal').showModal()} disabled={disabled} />
+                {/* <MdEdit className='text-center text-2xl cursor-pointer z-[50]' onClick={() => document.getElementById('image-modal').showModal()} disabled={disabled} /> */}
 
               </div>
               <h3 className={`text-lg font-semibold mt-5  text-center ${user?.displayName.length > 15 && 'tooltip'}`} data-tip={`${user?.displayName}`}>{user.displayName}</h3>
-              {/* <p className='flex gap-3 justify-center items-center text-lg font-semibold'><span>Type : {
-                (isAdmin || isDoctor || isReception) ? <>{isAdmin && 'Admin'} {isDoctor && 'Doctor'} {isReception && "Receptionist"} </> : 'User'
+              <p className='flex gap-3 justify-center items-center text-lg font-semibold'><span>Type : {
+                (isAdmin || isDoctor || isSeller ) ? <>{isAdmin && 'Admin'} {isDoctor && 'Doctor'} {isSeller && 'Seller'} </> : 'User'
               }
-              </span> */}
+              </span>
+              </p>
               {
-
+                (!isDoctor && !isAdmin && !isSeller) &&
                 <div className='text-center'>
                   <button className="btn btn-xs btn-primary text-white" onClick={() => document.getElementById('seller-modal').showModal()} >Become a Seller</button>
                 </div>
@@ -103,9 +116,11 @@ const DashboardLayout = () => {
             </div>
             <hr className='my-5' />
             <div className='text-lg'>
-              <>
-              <li><Link to='/dashboard/admin-dashboard'><MdDashboard /> Dashboard</Link></li>
-              </>
+              {isAdmin &&
+                <>
+                <li><Link to='/dashboard/admin-dashboard'><MdDashboard /> Dashboard</Link></li>
+                </>
+              }
               {
                 <>
                   <li><Link to='/dashboard'><FaAddressBook />My Appointment</Link></li>
@@ -114,19 +129,14 @@ const DashboardLayout = () => {
               }
 
 
-              {
-                //  <>
-                //   <li><Link to='/dashboard/patients'>My Patients</Link></li>
-                //   <li><Link to='/dashboard/createdoctor'>Create profile</Link></li>
-                // </>
-              }
-              {
-                <>
-                  <li><Link to='/dashboard/vendors'><FaGift />Vendors</Link></li>
+              { isDoctor &&
+                 <>
+                  <li><Link to='/dashboard/patients'><FaBriefcaseMedical />My Patients</Link></li>
                 </>
               }
-              {
+              { isAdmin &&
                 <>
+                  <li><Link to='/dashboard/vendors'><FaGift />Vendors</Link></li>
                   <li>
                   <details>
                     <summary className='flex items-center'><FaUserDoctor />Doctors</summary>
@@ -142,6 +152,7 @@ const DashboardLayout = () => {
                     <summary className='flex items-center'><HiSquare3Stack3D />Products</summary>
                     <ul className="p-2">
                       <li><Link to='/dashboard/my-products'><HiSquare3Stack3D />My Products</Link></li>
+                      <li><Link to='/dashboard/my-product-order'><MdBorderStyle />My Produuct Orders</Link></li>
                       <li><Link to='/dashboard/add-product'><BiMessageSquareAdd />Add a Product</Link></li>
                     </ul>
                   </details>
@@ -153,7 +164,18 @@ const DashboardLayout = () => {
                   <li><Link to='/dashboard/confirmation'>Confirmation Zone</Link></li>
                 </>
               }
-              {/* <li><Link to='/dashboard/appointment'>Appointments</Link></li> */}
+              { isSeller &&
+                <li>
+                <details>
+                  <summary className='flex items-center'><HiSquare3Stack3D />Products</summary>
+                  <ul className="p-2">
+                    <li><Link to='/dashboard/my-products'><HiSquare3Stack3D />My Products</Link></li>
+                    <li><Link to='/dashboard/my-product-order'><MdBorderStyle />My Produuct Orders</Link></li>
+                    <li><Link to='/dashboard/add-product'><BiMessageSquareAdd />Add a Product</Link></li>
+                  </ul>
+                </details>
+                </li>
+              }
             </div>
           </ul>
 

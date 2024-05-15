@@ -15,7 +15,7 @@ const MyOrder = () => {
         }
     })
     console.log(orders)
-    const delevaryDates = (date) => {
+    const delevaryDates = (date = 'ay 14, 2024') => {
         const orderDate = new Date(date); // Parse the date from the API response
         const deliveryDate = new Date(orderDate.getTime());
         deliveryDate.setDate(deliveryDate.getDate() + 7);
@@ -55,7 +55,7 @@ const MyOrder = () => {
                                     <td>{product.price * product.quantity}</td>
                                     <td>{product.quantity}</td>
                                     <td>{order.paymentType}</td>
-                                    <td>{delevaryDates(order.orderDate)}</td>
+                                    <td>{delevaryDates(order?.orderDate)}</td>
                                 </tr>))
                             })
                         }
