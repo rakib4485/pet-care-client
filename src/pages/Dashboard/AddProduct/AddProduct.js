@@ -4,10 +4,12 @@ import FileUpload from '../../../components/FileUpload';
 import { useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
 import { AuthContext } from '../../../contexts/AuthProvider';
+import { useNavigate } from 'react-router-dom';
 
 const AddProduct = () => {
     const {user} = useContext(AuthContext)
     const [files, setFiles] = useState([])
+    const navigate = useNavigate()
     const { register, formState: { errors }, handleSubmit } = useForm();
     const { data: categories = [] } = useQuery({
         queryKey: ['category'],
@@ -52,7 +54,7 @@ const AddProduct = () => {
                 .then(result =>{
                     console.log(result);
                     toast.success(`${data.name} is added successfully`);
-                    // navigate('/dashboard/managedoctors');
+                    navigate('/dashboard/my-products');
                 })
             }
         })
