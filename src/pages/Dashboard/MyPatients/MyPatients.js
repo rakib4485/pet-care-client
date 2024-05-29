@@ -42,7 +42,7 @@ const MyPatients = () => {
                             <td>{booking.treatment}</td>
                             <td>{booking.appointmentDate}</td>
                             <td>{booking.slot}</td>
-                            <td><Link target='_blank' to={`${booking.meet}`} className='btn btn-xs btn-primary'>Join</Link></td>
+                            <td><a className='btn btn-xs btn-primary' href={`${booking.meet}`}>Join here</a></td>
                         </tr>)
                     }
                 </tbody>

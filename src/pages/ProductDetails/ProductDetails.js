@@ -12,7 +12,7 @@ const ProductDetails = () => {
         <div>
             <ProductDetailsBanner name={name}/>
             <ProductOrder product={product}/>
-            <RelatedProduct/>
+            <RelatedProduct categoryId={product.categoryId}/>
         </div>
     );
 };

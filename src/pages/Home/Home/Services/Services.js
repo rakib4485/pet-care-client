@@ -8,26 +8,26 @@ const Services = () => {
     const serviceItems = [
         {
             id: 1,
-            title: 'Care for Puppy',
-            text: 'We strongly advise you to take advantage of our extremely affordable annual',
+            title: 'Pet Supplies',
+            text: 'Shop a wide range of pet supplies, including food, toys, and grooming products, all in one place.',
             img: service1
         },
         {
             id: 2,
-            title: 'Pet Grooming',
-            text: 'Most breeds are bathed, trimmed, and styled by our grooming specialists',
+            title: 'Online Consultations',
+            text: 'Access telemedicine services with licensed veterinarians for convenient and timely medical advice.',
             img: service2
         },
         {
             id: 3,
-            title: 'Dental Care',
-            text: 'Dental disease is the most commonly neglected chronic infection in our pets',
+            title: 'Veterinary Appointments',
+            text: "Easily book and manage vet appointments online for your pet's health and wellness.",
             img: service3
         },
         {
             id: 4,
-            title: 'Service at Resort',
-            text: 'With us pet care professionals are passionate, well-trained, and pleasant animal',
+            title: 'Nutrition Advice',
+            text: 'Get expert advice on the best nutrition and diet plans to keep your pet healthy.',
             img: service4
         }
     ]

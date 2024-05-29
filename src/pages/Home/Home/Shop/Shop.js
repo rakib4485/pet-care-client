@@ -9,7 +9,7 @@ const Shop = () => {
                 <h1 className='text-4xl md:text-5xl lg:text-6xl font-bold text-white'>Get Every Pet</h1>
                 <h1 className='text-4xl md:text-5xl lg:text-6xl font-bold text-white'>Food & Toods </h1>
                 <h1 className='text-4xl md:text-5xl lg:text-6xl font-bold text-white'>Here. </h1>
-                <p className="text-white text-md my-5 text-justify">We're a rare breed here at CarePress. We will adore and care for your dog as if it were our own. We understand that your dog is a furry member of your family who deserves the best treatment possible. You'll be giving your dog the most exciting day ever with our award-winning daycare, boarding, and food services!</p>
+                <p className="text-white text-md my-5 text-justify">At PCMS, we treat your pets as if they were our own. We understand that your pet is a beloved family member who deserves the best care. With our wide range of nutritious food, essential medicines, and quality supplies, you'll ensure your pet receives top-notch treatment. Experience the convenience and reliability of our services, designed to keep your pet happy and healthy!</p>
                 <AppointmentButton baseColor={`bg-[#393D72]`} HoverColor={`bg-[#8FC424]`} buttonText={`Shop Now`}/>
             </div>
             <div className='min-h-full' style={{backgroundImage: `url(${videoImg})`, backgroundSize: "cover"}}>

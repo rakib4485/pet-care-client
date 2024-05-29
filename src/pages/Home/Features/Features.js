@@ -25,7 +25,7 @@ const Features = () => {
                                     </div>
                                     <div>
                                         <h2 className='text-2xl font-bold' style={{color: '#393d72'}}>Life-time Medicine & Vaccine</h2>
-                                        <p className='mt-2 lg:w-3/4'>CarePress gives lifetime Medicine and vaccines free for those who are taking CarePress services.</p>
+                                        <p className='mt-2 lg:w-3/4'>PawsitiveCare Hub gives lifetime Medicine and vaccines free for those who are taking CarePress services.</p>
                                     </div>
                                 </div>
                                 <div className='flex gap-6 mt-4'>
@@ -34,7 +34,7 @@ const Features = () => {
                                     </div>
                                     <div>
                                         <h2 className='text-2xl font-bold' style={{color: '#393d72'}}>Core Level Groom Service</h2>
-                                        <p className='mt-2 lg:w-3/4'>CarePress grooming is now giving the core level service that are identical around the globe.</p>
+                                        <p className='mt-2 lg:w-3/4'>PawsitiveCare Hub grooming is now giving the core level service that are identical around the globe.</p>
                                     </div>
                                 </div>
                         </div>

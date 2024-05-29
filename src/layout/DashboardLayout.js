@@ -2,7 +2,7 @@ import React, { useContext, useState } from 'react';
 import NavbarComponent from '../Shared/Navbar/Navbar';
 import { Link, Outlet } from 'react-router-dom';
 import { AuthContext } from '../contexts/AuthProvider';
-import { FaGift, FaUserAlt } from 'react-icons/fa';
+import { FaGift, FaUser, FaUserAlt } from 'react-icons/fa';
 import { MdBorderStyle, MdDashboard, MdEdit } from 'react-icons/md';
 import { FaAddressBook, FaBriefcaseMedical, FaUserDoctor } from "react-icons/fa6";
 import { BsCartCheckFill } from 'react-icons/bs';
@@ -132,6 +132,7 @@ const DashboardLayout = () => {
               { isDoctor &&
                  <>
                   <li><Link to='/dashboard/patients'><FaBriefcaseMedical />My Patients</Link></li>
+                  <li><Link to='/dashboard/patients'><FaUser />Edit Profile</Link></li>
                 </>
               }
               { isAdmin &&

@@ -12,11 +12,11 @@ import 'swiper/css/effect-fade';
 import { Autoplay,EffectFade,Navigation } from 'swiper/modules';
 import ProductCard from '../../../components/ProductCard/ProductCard';
 
-const RelatedProduct = () => {
+const RelatedProduct = ({categoryId}) => {
     const {data: products = []} = useQuery({
         queryKey: ['product'],
         queryFn: async () => {
-            const res = await fetch('http://localhost:5000/products');
+            const res = await fetch(`http://localhost:5000/products?category=${categoryId}`);
             const data = await res.json();
             return data;
         }

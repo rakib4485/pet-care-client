@@ -15,29 +15,40 @@ import { Autoplay,EffectFade,Navigation } from 'swiper/modules';
 import HeroCard from './HeroCard';
 import Shop from '../Shop/Shop';
 import DogCards from '../DogCards/DogCards';
+import { Link } from 'react-router-dom';
+import AppointmentButton from '../../../../components/AppointmentButton/AppointmentButton';
 
 const Hero = () => {
     const heroItems = [
         {
             id: 1,
             header: 'Enjoy Your Holiday',
-            boldText1: 'We Keep Them',
-            boldText2: 'Happy Anytime',
-            bgImg: herobg1
+            boldText1: 'Comprehensive ',
+            boldText2: 'Pet Care Solutions',
+            bgImg: herobg1,
+            btn: <Link to='/appointments'>
+            <AppointmentButton baseColor={`bg-[#FF4880]`} HoverColor={`bg-[#8FC424]`} buttonText={`Make Appointment`}></AppointmentButton>
+            </Link>
         },
         {
             id: 2,
             header: 'Enjoy Your Holiday',
-            boldText1: 'We Keep Them',
-            boldText2: 'Happy Anytime',
-            bgImg: herobg2
+            boldText1: 'Seamless ',
+            boldText2: 'Shopping Experience',
+            bgImg: herobg2,
+            btn: <Link to='/shop'>
+            <AppointmentButton baseColor={`bg-[#FF4880]`} HoverColor={`bg-[#8FC424]`} buttonText={`Make Shopping`}></AppointmentButton>
+            </Link>
         },
         {
             id: 3,
             header: 'Enjoy Your Holiday',
-            boldText1: 'We Keep Them',
-            boldText2: 'Happy Anytime',
-            bgImg: herobg3
+            boldText1: 'Connect with ',
+            boldText2: 'Trusted Veterinarians',
+            bgImg: herobg3,
+            btn: <Link to='/appointments'>
+            <AppointmentButton baseColor={`bg-[#FF4880]`} HoverColor={`bg-[#8FC424]`} buttonText={`Make Appointments`}></AppointmentButton>
+            </Link>
         },
     ]
     return (

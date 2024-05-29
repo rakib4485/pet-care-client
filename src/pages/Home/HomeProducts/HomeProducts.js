@@ -6,7 +6,7 @@ const HomeProducts = () => {
     const {data: products = []} = useQuery({
         queryKey: ['product'],
         queryFn: async () => {
-            const res = await fetch('http://localhost:5000/products');
+            const res = await fetch('http://localhost:5000/products?category=0');
             const data = await res.json();
             return data;
         }

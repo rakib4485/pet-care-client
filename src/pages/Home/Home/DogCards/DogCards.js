@@ -5,17 +5,17 @@ const DogCards = () => {
         {
             id: 1,
             title: 'Appointment scheduling',
-            description: 'We provide a range of training programs, ranging from basic and advanced obedience to training your new puppy.'
+            description: 'Effortlessly book, reschedule, or cancel veterinary appointments. Ensure timely and professional care for your pets with our easy scheduling system.'
         },
         {
             id: 2,
             title: 'Pet Medicine',
-            description: 'We provide a range of training programs, ranging from basic and advanced obedience to training your new puppy.'
+            description: 'Access a wide range of essential pet medicines. Shop securely and conveniently to keep your pets healthy and well-cared for.'
         },
         {
             id: 3,
             title: 'Pet Food',
-            description: 'We provide a range of training programs, ranging from basic and advanced obedience to training your new puppy.'
+            description: "Find high-quality, nutritious pet food tailored to your pet's needs. Enjoy a seamless shopping experience with our extensive selection."
         },
     ]
     return (
