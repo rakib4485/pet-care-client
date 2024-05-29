@@ -28,6 +28,7 @@ import MyProducts from "../pages/Dashboard/MyProducts/MyProducts";
 import AddProduct from "../pages/Dashboard/AddProduct/AddProduct";
 import MyProductOrder from "../pages/Dashboard/MyProductOrder/MyProductOrder";
 import MyPatients from "../pages/Dashboard/MyPatients/MyPatients";
+import EditProfile from "../pages/EditProfile/EditProfile";
 
 export const router = createBrowserRouter([
     {
@@ -153,6 +154,10 @@ export const router = createBrowserRouter([
             {
                 path: '/dashboard/patients',
                 element: <MyPatients/>
+            },
+            {
+                path: '/dashboard/edit-profile',
+                element: <EditProfile/>
             },
         ]
     },
