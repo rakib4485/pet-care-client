@@ -8,7 +8,7 @@ const MyOrder = () => {
     const {data: orders = []} = useQuery({
         queryKey: ['order', user?.email],
         queryFn: async () => {
-            const url = `http://localhost:5000/orders?email=${user?.email}`;
+            const url = `https://pet-care-server-lake.vercel.app/orders?email=${user?.email}`;
             const res = await fetch(url);
             const data = await res.json();
             return data;

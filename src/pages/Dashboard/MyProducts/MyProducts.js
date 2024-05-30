@@ -7,7 +7,7 @@ const MyProducts = () => {
     const { data: products = [] } = useQuery({
         queryKey: ['product', user?.email],
         queryFn: async () => {
-            const res = await fetch(`http://localhost:5000/my-product?email=${user?.email}`);
+            const res = await fetch(`https://pet-care-server-lake.vercel.app/my-product?email=${user?.email}`);
             const data = await res.json()
             return data;
         }

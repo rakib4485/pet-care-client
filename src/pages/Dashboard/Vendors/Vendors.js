@@ -27,7 +27,7 @@ const Vendors = () => {
     const { data: users = [], isLoading, refetch } = useQuery({
         queryKey: ['user'],
         queryFn: async () => {
-            const res = await fetch('http://localhost:5000/users');
+            const res = await fetch('https://pet-care-server-lake.vercel.app/users');
             const data = await res.json();
             data.map(async (user, i) => {
                 if (await user.role === 'sellerRequest') {
@@ -42,7 +42,7 @@ const Vendors = () => {
     const { data: sellerInfo = [] } = useQuery({
         queryKey: ['sellerInfo', requestEmail],
         queryFn: async () => {
-            const res = await fetch(`http://localhost:5000/sellerInfo?email=${requestEmail}`);
+            const res = await fetch(`https://pet-care-server-lake.vercel.app/sellerInfo?email=${requestEmail}`);
             const data = await res.json();
             console.log(data)
             return data;
@@ -51,7 +51,7 @@ const Vendors = () => {
 
     const handleRole = () => {
         console.log('clicked')
-        const url = `http://localhost:5000/user/update/${role}?email=${requestEmail}`;
+        const url = `https://pet-care-server-lake.vercel.app/user/update/${role}?email=${requestEmail}`;
         fetch(url, {
             method: 'PUT',
             headers: {

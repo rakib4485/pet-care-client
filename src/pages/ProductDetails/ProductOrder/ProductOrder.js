@@ -32,7 +32,7 @@ const ProductOrder = ({ product }) => {
             sellerEmail
         }
 
-        fetch('http://localhost:5000/carts', {
+        fetch('https://pet-care-server-lake.vercel.app/carts', {
             method: 'POST',
             headers: {
               'content-type': 'application/json'
