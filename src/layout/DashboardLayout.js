@@ -43,7 +43,7 @@ const DashboardLayout = () => {
       nid
     }
 
-    fetch('http://localhost:5000/sellerRequest', {
+    fetch('https://pet-care-server-lake.vercel.app/sellerRequest', {
       method: 'PUT',
       headers: {
         'content-type': 'application/json'
@@ -132,7 +132,7 @@ const DashboardLayout = () => {
               { isDoctor &&
                  <>
                   <li><Link to='/dashboard/patients'><FaBriefcaseMedical />My Patients</Link></li>
-                  <li><Link to='/dashboard/patients'><FaUser />Edit Profile</Link></li>
+                  <li><Link to='/dashboard/edit-profile'><FaUser />Edit Profile</Link></li>
                 </>
               }
               { isAdmin &&

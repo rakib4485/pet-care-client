@@ -58,7 +58,7 @@ const AddDoctor = () => {
                       ]
                 }
 
-                fetch('http://localhost:5000/appointmentOptions',{
+                fetch('https://pet-care-server-lake.vercel.app/appointmentOptions',{
                     method: 'POST',
                     headers: {
                         'content-type': 'application/json'

@@ -8,7 +8,7 @@ const MyAppointment = () => {
     const {data: bookings=[]} = useQuery({
         queryKey: ['booking', user?.email],
         queryFn: async() => {
-            const res = await fetch(`http://localhost:5000/bookings?email=${user?.email}`);
+            const res = await fetch(`https://pet-care-server-lake.vercel.app/bookings?email=${user?.email}`);
             const data = res.json()
             return data;
         }

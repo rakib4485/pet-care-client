@@ -71,7 +71,7 @@ const Signup = () => {
 
     const saveUser = (name, email, role, image) => {
         const user = { name, email, role, image };
-        fetch('http://localhost:5000/users', {
+        fetch('https://pet-care-server-lake.vercel.app/users', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'

@@ -6,7 +6,7 @@ const AllDoctors = () => {
     const {data: doctors = []} = useQuery({
         queryKey: ['doctor'],
         queryFn: async () => {
-            const res = await fetch('http://localhost:5000/doctors');
+            const res = await fetch('https://pet-care-server-lake.vercel.app/doctors');
             const data = await res.json()
             return data;
         }
