@@ -5,12 +5,27 @@ import BookingModal from '../BookingModal/BookingModal';
 import headerImg from '../../../assets/header.jpg'
 import { Tabs } from 'keep-react';
 import { Book, Pen, Phone, SignIn, User } from 'phosphor-react'
+import { useQuery } from '@tanstack/react-query';
+import { FaGraduationCap } from "react-icons/fa6";
+import { FaPhoneSquare } from "react-icons/fa";
+import { MdEmail } from "react-icons/md";
+
 
 const SingleDoctor = () => {
     const doctor = useLoaderData();
-    const { _id, name, image, prices, slots } = doctor;
+    const { _id, name, image, prices, slots, email } = doctor;
     const [treatment, setTreatment] = useState(null);
-    console.log(treatment);
+    // console.log(treatment);
+
+    const { data: user = [] } = useQuery({
+        queryKey: ['doctor'],
+        queryFn: async () => {
+            const res = await fetch(`https://pet-care-server-lake.vercel.app/user/${email}`);
+            const data = await res.json()
+            return data;
+        }
+    })
+    console.log(user)
     return (
         <div className=''>
             <div className='' style={{ background: `url(${headerImg})`, backgroundSize: "cover", backgroundPosition: 'center' }}>
@@ -26,8 +41,8 @@ const SingleDoctor = () => {
                     </div>
                     <div className='w-[60%]'>
                         <h2 className='text-2xl font-bold'>{name}</h2>
-                        <h2 className='text-xl font-semibold'>Starting Price: {prices}</h2>
-                        <p>Amet consectetur adipisicing eliteiuim sete eiu tempor incidit utoreas etnalom dolore maena aliqua udiminimate veniam quis norud exercita.</p>
+                        <h2 className='text-xl font-semibold'>Price: BDT {prices}</h2>
+                        <p>{user?.doctorDetails?.about.slice(0, 200)} ...</p>
                         <div className='mt-10'>
                             <label disabled={slots.length === 0}
                                 htmlFor="booking-modal"
@@ -56,19 +71,35 @@ const SingleDoctor = () => {
                             </Tabs.Item>
                         </Tabs.List>
                         <Tabs.Content label="one">
-                            A wonderful serenity has taken possession of my entire soul, like these sweet mornings of spring which I enjoy
-                            with my whole heart. I am alone, and feel the charm of existence in this spot, which was created for the bliss
-                            of souls like mine.
+                            <p className="text-justify"> {user?.doctorDetails?.about}</p>
                         </Tabs.Content>
                         <Tabs.Content label="two">
-                            I am so happy, my dear friend, so absorbed in the exquisite sense of mere tranquil existence, that I neglect my
-                            talents. I should be incapable of drawing a single stroke at the present moment; and yet I feel that I never was
-                            a greater artist than now.
+                            {
+                                user?.doctorDetails?.education &&
+                                user?.doctorDetails?.education.map((edu, idx) => <div className="flex gap-3 items-center my-5">
+                                    <div><FaGraduationCap className="text-4xl" /></div>
+                                    <div>
+                                        <p>{edu.institution}</p>
+                                        <p><span>{edu.degree}</span><span>, {edu.year}</span></p>
+                                    </div>
+                                </div>
+
+                                )
+                            }
                         </Tabs.Content>
                         <Tabs.Content label="three">
-                            A wonderful serenity has taken possession of my entire soul, like these sweet mornings of spring which I enjoy
-                            with my whole heart. I am alone, and feel the charm of existence in this spot, which was created for the bliss
-                            of souls like mine.
+                            <div className="flex gap-3 items-center my-5">
+                                <div><FaPhoneSquare className="text-4xl" /></div>
+                                <div>
+                                    <p>{user?.doctorDetails?.phone}</p>
+                                </div>
+                            </div>
+                            <div className="flex gap-3 items-center my-5">
+                                <div><MdEmail className="text-4xl" /></div>
+                                <div>
+                                    <p>{user?.doctorDetails?.sEmail}</p>
+                                </div>
+                            </div>
                         </Tabs.Content>
                     </Tabs>
                 </div>
