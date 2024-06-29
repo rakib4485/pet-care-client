@@ -13,7 +13,7 @@ import { MdEmail } from "react-icons/md";
 
 const SingleDoctor = () => {
     const doctor = useLoaderData();
-    const { _id, name, image, prices, slots, email } = doctor;
+    const { _id, name, image, prices, email } = doctor;
     const [treatment, setTreatment] = useState(null);
     // console.log(treatment);
 
@@ -44,7 +44,7 @@ const SingleDoctor = () => {
                         <h2 className='text-xl font-semibold'>Price: BDT {prices}</h2>
                         <p>{user?.doctorDetails?.about.slice(0, 200)} ...</p>
                         <div className='mt-10'>
-                            <label disabled={slots.length === 0}
+                            <label 
                                 htmlFor="booking-modal"
                                 className='mt-10'
                                 onClick={() => setTreatment(doctor)}

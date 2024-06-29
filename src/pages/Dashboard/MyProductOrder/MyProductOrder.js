@@ -1,11 +1,12 @@
 import { useQuery } from '@tanstack/react-query';
 import React, { useContext, useEffect, useState } from 'react';
 import { AuthContext } from '../../../contexts/AuthProvider';
+import toast from 'react-hot-toast';
 
 const MyProductOrder = () => {
     const {user} = useContext(AuthContext)
     const [orderTotal, setOrserTotal] = useState(0);
-    const { data: orders = [] } = useQuery({
+    const { data: orders = [], refetch } = useQuery({
         queryKey: ['order', user?.email],
         queryFn: async () => {
             const res = await fetch(`https://pet-care-server-lake.vercel.app/my-product-order?email=${user?.email}`);
@@ -32,6 +33,33 @@ const MyProductOrder = () => {
             setOrserTotal(total)
         })
     }, [orders]);
+
+    const handleDeleteOrder = (id, productId) =>{
+        console.log(id)
+        fetch(`https://pet-care-server-lake.vercel.app/orders/${id}?productId=${productId}`, {
+            method: 'DELETE', 
+        })
+        .then(res => res.json())
+        .then(data => {
+            if(data.modifiedCount > 0){
+                refetch();
+                toast.success(`Order deleted successfully`)
+            }
+        })
+    }
+    const handleConfirmOrder = (id, productId) =>{
+        console.log(id)
+        fetch(`https://pet-care-server-lake.vercel.app/confirm-order/${id}?productId=${productId}`, {
+            method: 'PUT', 
+        })
+        .then(res => res.json())
+        .then(data => {
+            if(data.modifiedCount > 0){
+                refetch();
+                toast.success(`Order Confrim successfully`)
+            }
+        })
+    }
 
     const summeryCardItems = [
         {
@@ -107,6 +135,7 @@ const MyProductOrder = () => {
                             <th>Total</th>
                             <th>Payment</th>
                             <th>Status</th>
+                            <th>Cancel</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -135,6 +164,13 @@ const MyProductOrder = () => {
                                 <td><span className='text-2xl'></span>{booking.product.quantity}</td>
                                 <td><span className='text-2xl'>৳</span>{booking.price}</td>
                                 <td><small className='font-semibold'>{booking.paymentType}</small></td>
+                                <td>{
+                                    booking.product.status ? <span>{booking.product.status}</span>: <sapn className='btn btn-success btn-xs' onClick={() => handleConfirmOrder(booking.orderId, booking.product._id)}>Confirm</sapn>
+                                    }</td>
+                                <td>{
+                                    !booking.product.status &&
+                                    <span className='btn btn-error btn-xs' onClick={() => handleDeleteOrder(booking.orderId, booking.product._id)}>Cancel</span>
+                                    }</td>
                                 
                                 {/* <td><Link target='_blank' to={`${booking.meet}`} className='btn btn-xs btn-primary'>Join</Link></td> */}
 

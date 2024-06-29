@@ -2,10 +2,11 @@ import React, { useContext } from 'react';
 import { AuthContext } from '../../../contexts/AuthProvider';
 import { useQuery } from '@tanstack/react-query';
 import { format } from 'date-fns';
+import toast from 'react-hot-toast';
 
 const MyOrder = () => {
     const {user} = useContext(AuthContext)
-    const {data: orders = []} = useQuery({
+    const {data: orders = [], refetch} = useQuery({
         queryKey: ['order', user?.email],
         queryFn: async () => {
             const url = `https://pet-care-server-lake.vercel.app/orders?email=${user?.email}`;
@@ -24,6 +25,19 @@ const MyOrder = () => {
         return del;
     }
 
+    const handleDeleteOrder = (id, productId) =>{
+        console.log(id)
+        fetch(`https://pet-care-server-lake.vercel.app/orders/${id}?productId=${productId}`, {
+            method: 'DELETE', 
+        })
+        .then(res => res.json())
+        .then(data => {
+            if(data.modifiedCount > 0){
+                refetch();
+                toast.success(`Order deleted successfully`)
+            }
+        })
+    }
     return (
         <div className='bg-gray-200 h-full'>
             <div className='flex gap-3 py-5 items-center shadow-xl rounded-xl bg-white'>
@@ -43,19 +57,30 @@ const MyOrder = () => {
                             <th>Quantity</th>
                             <th>Payment Status</th>
                             <th>Delevary Date</th>
+                            <th>Order Status</th>
+                            <th>Cancel Order</th>
                         </tr>
                     </thead>
                     <tbody>
                         {orders &&
                             orders.map((order, i) => {
                                 return (order.products?.map(product => <tr key={product._id}>
-                                    <th>{i + 1}</th>
+                                    <th></th>
                                     <td><img src={product.img} alt='' className='w-12' /></td>
                                     <td>{product.productName}</td>
                                     <td>{product.price * product.quantity}</td>
                                     <td>{product.quantity}</td>
                                     <td>{order.paymentType}</td>
                                     <td>{delevaryDates(order?.orderDate)}</td>
+                                    <td>
+                                        {
+                                            product.status ? <span className='text-success text-xl font-semibold'>{product.status}</span> : <span>Processing</span>
+                                        }
+                                    </td>
+                                    {
+                                        !product.status && 
+                                        <td><span onClick={() => handleDeleteOrder(order._id, product._id)} className='btn btn-error btn-xs' >cancel</span></td>
+                                    }
                                 </tr>))
                             })
                         }

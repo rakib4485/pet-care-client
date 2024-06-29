@@ -20,6 +20,7 @@ const ShopBody = () => {
                     <Products categoryId={categoryId}/>
                 </div>
                 <div className='w-[30%] sticky top-2'>
+                    <div className='sticky top-2'>
                     <h1 className='text-3xl font-bold text-secondary'>Product Categories</h1>
                     <ul className='mt-10 ml-20'>
                         {
@@ -37,6 +38,7 @@ const ShopBody = () => {
                             </span>
                         </li>
                     </ul>
+                    </div>
                 </div>
             </div>
         </div>

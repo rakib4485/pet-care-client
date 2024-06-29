@@ -1,17 +1,41 @@
 import { useQuery } from '@tanstack/react-query';
-import React from 'react';
+import React, { useState } from 'react';
+import toast from 'react-hot-toast';
 import { Link } from 'react-router-dom';
 
 const AllDoctors = () => {
-    const {data: doctors = []} = useQuery({
+    const [doctorName, setDoctorName] = useState('');
+    const [doctorId, setDoctorId] = useState(null);
+    const {data: doctors = [], refetch} = useQuery({
         queryKey: ['doctor'],
         queryFn: async () => {
-            const res = await fetch('https://pet-care-server-lake.vercel.app/doctors');
+            const res = await fetch('https://pet-care-server-lake.vercel.app/appointmentOption');
             const data = await res.json()
             return data;
         }
     })
     console.log(doctors)
+    const handleDeleteProduct = () => {
+        fetch(`https://pet-care-server-lake.vercel.app/doctors/${doctorId}`, {
+            method: 'DELETE',
+        })
+            .then(res => res.json())
+            .then(data => {
+                if (data.deletedCount > 0) {
+                    refetch();
+                    toast.success(`Order Confrim successfully`)
+                    closeModal('delete-modal')
+                }
+            })
+    }
+
+    const closeModal = (name) => {
+        // Get the modal element
+        const modal = document.getElementById(name);
+    
+        // Hide the modal
+        modal.close();
+      };
     return (
         <div>
             <div className='flex gap-3 py-5 items-center shadow-xl rounded-xl bg-white'>
@@ -26,6 +50,7 @@ const AllDoctors = () => {
                     <thead>
                         <tr>
                             <th></th>
+                            <th>Image</th>
                             <th>Doctor Name</th>
                             <th>Email</th>
                             <th>Price</th>
@@ -37,10 +62,16 @@ const AllDoctors = () => {
                         {doctors &&
                             doctors.map((booking, i) => <tr key={booking._id}>
                                 <th>{i + 1}</th>
+                                <td><img src={booking.image} alt='' className='w-16' /></td>
                                 <td>{booking.name}</td>
                                 <td>{booking.email}</td>
-                                <td>৳{booking.price}</td>
-                                <td></td>
+                                <td>৳{booking.prices}</td>
+                                <td><small className='font-semibold btn btn-error btn-xs text-white' onClick={() => {document.getElementById('delete-modal').showModal();
+                                            setDoctorId(booking._id);
+                                            setDoctorName(booking.name)
+                                    }
+                                        
+                                    }>Delete Doctor</small></td>
                                 
                                 <td><Link target='_blank' to={`${booking.meet}`} className='btn btn-xs btn-primary'>Join</Link></td>
 
@@ -49,6 +80,18 @@ const AllDoctors = () => {
                     </tbody>
                 </table>
             </div>
+            <dialog id="delete-modal" className="modal">
+                <div className="modal-box">
+                    <form method="dialog">
+                        <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
+                    </form>
+                    <h2 className="text-md text-red-500 mt-5 text-xl text-center font-semibold">Do You Relly Want to Delete {doctorName}!!</h2>
+                    
+                    <div className='text-right mt-10'>
+                    <span className='btn btn-error text-white' onClick={handleDeleteProduct}>Delete</span>
+                    </div>
+                </div>
+            </dialog>
         </div>
     );
 };
