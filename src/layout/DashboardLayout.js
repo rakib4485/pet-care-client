@@ -94,7 +94,7 @@ const DashboardLayout = () => {
                 {/* <MdEdit className='text-center text-2xl cursor-pointer z-[50]' onClick={() => document.getElementById('image-modal').showModal()} disabled={disabled} /> */}
 
               </div>
-              <h3 className={`text-lg font-semibold mt-5  text-center ${user?.displayName.length > 15 && 'tooltip'}`} data-tip={`${user?.displayName}`}>{user.displayName}</h3>
+              <h3 className={`text-lg font-semibold mt-5  text-center `}>{user.displayName}</h3>
               <p className='flex gap-3 justify-center items-center text-lg font-semibold'><span>Type : {
                 (isAdmin || isDoctor || isSeller ) ? <>{isAdmin && 'Admin'} {isDoctor && 'Doctor'} {isSeller && 'Seller'} </> : 'User'
               }
@@ -160,9 +160,9 @@ const DashboardLayout = () => {
                   </li>
                   {/* <li><Link to='/dashboard/allusers'>Users List</Link></li> */}
                   {/* <li></li> */}
-                  <li><Link to='/dashboard/products'>Products</Link></li>
+                  {/* <li><Link to='/dashboard/products'>Products</Link></li> */}
                   {/* <li><Link to='/dashboard/products'>Doctor Request</Link></li> */}
-                  <li><Link to='/dashboard/confirmation'>Confirmation Zone</Link></li>
+                  {/* <li><Link to='/dashboard/confirmation'>Confirmation Zone</Link></li> */}
                 </>
               }
               { isSeller &&
