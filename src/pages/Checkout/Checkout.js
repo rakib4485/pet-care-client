@@ -16,7 +16,7 @@ const Checkout = () => {
     const { data: carts = [] } = useQuery({
         queryKey: ['cart', user?.email],
         queryFn: async () => {
-            const res = await fetch(`https://pet-care-server-lake.vercel.app/carts?email=${user?.email}`);
+            const res = await fetch(`https://pet-care-server-gamma.vercel.app/carts?email=${user?.email}`);
             const data = await res.json()
             return data;
         }
@@ -56,7 +56,7 @@ const Checkout = () => {
 
         console.log(order)
 
-        fetch('https://pet-care-server-lake.vercel.app/productOrder', {
+        fetch('https://pet-care-server-gamma.vercel.app/productOrder', {
           method: 'POST',
           headers: {
             'content-type': 'application/json'

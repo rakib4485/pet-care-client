@@ -59,14 +59,14 @@ export const router = createBrowserRouter([
                 path: '/products/:id',
                 element: <PrivateRoutes><ProductDetails/></PrivateRoutes>,
                 loader: ({params}) => {
-                    return fetch(`https://pet-care-server-lake.vercel.app/products/${params.id}`);
+                    return fetch(`https://pet-care-server-gamma.vercel.app/products/${params.id}`);
                 }
             },
             {
                 path: '/doctors/:id',
                 element: <PrivateRoutes><SingleDoctor/></PrivateRoutes>,
                 loader: ({params}) => {
-                    return fetch(`https://pet-care-server-lake.vercel.app/appointmentOption/${params.id}`);
+                    return fetch(`https://pet-care-server-gamma.vercel.app/appointmentOption/${params.id}`);
                 }
             },
             {

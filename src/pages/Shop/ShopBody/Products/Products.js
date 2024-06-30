@@ -1,13 +1,14 @@
 import { useQuery } from '@tanstack/react-query';
 import React, { useState } from 'react';
 import ProductCard from '../../../../components/ProductCard/ProductCard';
+import Loader from '../../../../components/Loader/Loader';
 
 const Products = ({ categoryId }) => {
 
-    const { data: products = [] } = useQuery({
+    const { data: products = [], isLoading } = useQuery({
         queryKey: ['product', categoryId],
         queryFn: async () => {
-            const res = await fetch(`https://pet-care-server-lake.vercel.app/products?category=${categoryId}`);
+            const res = await fetch(`https://pet-care-server-gamma.vercel.app/products?category=${categoryId}`);
             const data = await res.json();
             return data;
         }
@@ -38,6 +39,9 @@ const Products = ({ categoryId }) => {
     }
 
 
+    if(isLoading){
+        return <Loader/>
+    }
     // console.log('hello',products);
     return (
         <div>

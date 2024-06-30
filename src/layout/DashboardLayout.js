@@ -43,7 +43,7 @@ const DashboardLayout = () => {
       nid
     }
 
-    fetch('https://pet-care-server-lake.vercel.app/sellerRequest', {
+    fetch('https://pet-care-server-gamma.vercel.app/sellerRequest', {
       method: 'PUT',
       headers: {
         'content-type': 'application/json'

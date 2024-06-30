@@ -27,7 +27,7 @@ const Vendors = () => {
     const { data: users = [], isLoading, refetch } = useQuery({
         queryKey: ['user'],
         queryFn: async () => {
-            const res = await fetch('https://pet-care-server-lake.vercel.app/users');
+            const res = await fetch('https://pet-care-server-gamma.vercel.app/users');
             const data = await res.json();
             data.map(async (user, i) => {
                 if (await user.role === 'sellerRequest') {
@@ -42,7 +42,7 @@ const Vendors = () => {
     const { data: sellerInfo = [] } = useQuery({
         queryKey: ['sellerInfo', requestEmail],
         queryFn: async () => {
-            const res = await fetch(`https://pet-care-server-lake.vercel.app/sellerInfo?email=${requestEmail}`);
+            const res = await fetch(`https://pet-care-server-gamma.vercel.app/sellerInfo?email=${requestEmail}`);
             const data = await res.json();
             console.log(data)
             return data;
@@ -51,7 +51,7 @@ const Vendors = () => {
 
     const handleRole = () => {
         console.log('clicked')
-        const url = `https://pet-care-server-lake.vercel.app/user/update/${role}?email=${requestEmail}`;
+        const url = `https://pet-care-server-gamma.vercel.app/user/update/${role}?email=${requestEmail}`;
         fetch(url, {
             method: 'PUT',
             headers: {
@@ -93,12 +93,12 @@ const Vendors = () => {
                             }`}
                     >
                         <div className="indicator">
-                                {
-                                    sellerRequest.length > 0 &&
-                                    <span className=" indicator-item text-white badge badge-error">new</span>
-                                }
-                                <div className="grid w-36">Seller Request</div>
-                            </div>
+                            {
+                                sellerRequest.length > 0 &&
+                                <span className=" indicator-item text-white badge badge-error">new</span>
+                            }
+                            <div className="grid w-36">Seller Request</div>
+                        </div>
                     </div>
                     {/* Add more tabs as needed */}
                 </div>
@@ -125,19 +125,20 @@ const Vendors = () => {
                                         {
                                             users.map((user, i) => (
                                                 user.role === 'seller' ?
-                                                <tr key={i} className="hover">
-                                                    <th></th>
-                                                    <td><img src={user?.sellerInfo?.image} alt=''className='h-16 w-16 rounded-full'/></td>
-                                                    <td>{user.name}</td>
-                                                    <td>{user?.sellerInfo?.shopName}</td>
-                                                    <td>{user.email}</td>
-                                                    <td>{user?.sellerInfo?.nid}</td>
-                                                    <td>{user?.sellerInfo?.phone}</td>
-                                                    <td>{user?.role !== 'admin' && <button className='btn btn-xs text-white btn-error' onClick={() => {  setRequestEmail(user.email);
-                                                    setRole('delete');
-                                                    handleRole();
-                                                     }}>Delete</button>}</td>
-                                                </tr> : <></>
+                                                    <tr key={i} className="hover">
+                                                        <th></th>
+                                                        <td><img src={user?.sellerInfo?.image} alt='' className='h-16 w-16 rounded-full' /></td>
+                                                        <td>{user.name}</td>
+                                                        <td>{user?.sellerInfo?.shopName}</td>
+                                                        <td>{user.email}</td>
+                                                        <td>{user?.sellerInfo?.nid}</td>
+                                                        <td>{user?.sellerInfo?.phone}</td>
+                                                        <td>{user?.role !== 'admin' && <button className='btn btn-xs text-white btn-error' onClick={() => {
+                                                            setRequestEmail(user.email);
+                                                            setRole('delete');
+                                                            handleRole();
+                                                        }}>Delete</button>}</td>
+                                                    </tr> : <></>
                                             ))
                                         }
 
@@ -168,8 +169,10 @@ const Vendors = () => {
                                                         <th></th>
                                                         <td>{user.name}</td>
                                                         <td>{user.email}</td>
-                                                        <td>{user?.role !== 'admin' && <button className='btn btn-xs text-white btn-secondary' onClick={() => { document.getElementById('request-modal').showModal(); setRequestEmail(user.email);
-                                                        setUserName(user.name) }}>View</button>}</td>
+                                                        <td>{user?.role !== 'admin' && <button className='btn btn-xs text-white btn-secondary' onClick={() => {
+                                                            document.getElementById('request-modal').showModal(); setRequestEmail(user.email);
+                                                            setUserName(user.name)
+                                                        }}>View</button>}</td>
                                                     </tr> : <></>
                                             ))
                                         }
@@ -190,7 +193,7 @@ const Vendors = () => {
                         <h2 className="text-xl font-semibold mt-5 capitalize text-center">{`Information Of ${userName}!!!`}</h2>
                         <div className='flex gap-3 items-center my-10'>
                             <h2 className='text-2xl font-bold'>Image: </h2>
-                            <img src={sellerInfo?.sellerInfo?.image} className='w-52' alt=''/>
+                            <img src={sellerInfo?.sellerInfo?.image} className='w-52' alt='' />
                         </div>
                         <div className=''>
                             <p><strong>Name: </strong>{sellerInfo?.sellerInfo?.name}</p>
@@ -203,7 +206,7 @@ const Vendors = () => {
                                 handleRole();
                                 setRole('delete')
                             }} className={`btn btn-outline btn-error  mt-5`}>Delete Request</button>
-                            <button  onClick={() => {
+                            <button onClick={() => {
                                 handleRole();
                                 setRole('confirm')
                             }} className={`btn btn-outline ml-5 btn-success mt-5`}>Add As a seller</button>
