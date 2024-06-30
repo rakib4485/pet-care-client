@@ -10,9 +10,9 @@ const AddDoctor = () => {
 
     const navigate = useNavigate();
 
-    const {data: specialties, isLoading} = useQuery({
+    const { data: specialties, isLoading } = useQuery({
         querykey: ['specialty'],
-        queryFn: async () =>{
+        queryFn: async () => {
             const res = await fetch('https://medwin-cares-server-two.vercel.app/appointmentSpecialty');
             const data = await res.json();
             return data;
@@ -28,51 +28,54 @@ const AddDoctor = () => {
             method: 'POST',
             body: formData
         })
-        .then(res => res.json())
-        .then(imgData =>{
-            if(imgData.success){
-                console.log(imgData.data.url);
-                const doctor = {
-                    name: data.name,
-                    email: data.email,
-                    image: imgData.data.url,
-                    meet: data.meet,
-                    prices: data.price,
-                    slots: [
-                        "08.00 AM - 08.30 AM",
-                        "08.30 AM - 09.00 AM",
-                        "09.00 AM - 9.30 AM",
-                        "09.30 AM - 10.00 AM",
-                        "10.00 AM - 10.30 AM",
-                        "10.30 AM - 11.00 AM",
-                        "11.00 AM - 11.30 AM",
-                        "11.30 AM - 12.00 AM",
-                        "1.00 PM - 1.30 PM",
-                        "1.30 PM - 2.00 PM",
-                        "2.00 PM - 2.30 PM",
-                        "2.30 PM - 3.00 PM",
-                        "3.00 PM - 3.30 PM",
-                        "3.30 PM - 4.00 PM",
-                        "4.00 PM - 4.30 PM",
-                        "4.30 PM - 5.00 PM"
-                      ]
-                }
+            .then(res => res.json())
+            .then(imgData => {
+                if (imgData.success) {
+                    console.log(imgData.data.url);
+                    const doctor = {
+                        name: data.name,
+                        email: data.email,
+                        image: imgData.data.url,
+                        meet: data.meet,
+                        prices: data.price,
+                        offlineSlots: [
+                            "08.00 AM - 08.30 AM",
+                            "08.30 AM - 09.00 AM",
+                            "09.00 AM - 9.30 AM",
+                            "09.30 AM - 10.00 AM",
+                            "10.00 AM - 10.30 AM",
+                            "10.30 AM - 11.00 AM",
+                            "11.00 AM - 11.30 AM",
+                            "11.30 AM - 12.00 AM"
 
-                fetch('https://pet-care-server-lake.vercel.app/appointmentOptions',{
-                    method: 'POST',
-                    headers: {
-                        'content-type': 'application/json'
-                    },
-                    body: JSON.stringify(doctor)
-                })
-                .then(res => res.json())
-                .then(result =>{
-                    console.log(result);
-                    toast.success(`${data.name} is added successfully`);
-                    // navigate('/dashboard/managedoctors');
-                })
-            }
-        })
+                        ],
+                        onlineSlots: [
+                            "1.00 PM - 1.30 PM",
+                            "1.30 PM - 2.00 PM",
+                            "2.00 PM - 2.30 PM",
+                            "2.30 PM - 3.00 PM",
+                            "3.00 PM - 3.30 PM",
+                            "3.30 PM - 4.00 PM",
+                            "4.00 PM - 4.30 PM",
+                            "4.30 PM - 5.00 PM"
+                        ],
+                    }
+
+                    fetch('https://pet-care-server-gamma.vercel.app/appointmentOptions', {
+                        method: 'POST',
+                        headers: {
+                            'content-type': 'application/json'
+                        },
+                        body: JSON.stringify(doctor)
+                    })
+                        .then(res => res.json())
+                        .then(result => {
+                            console.log(result);
+                            toast.success(`${data.name} is added successfully`);
+                            // navigate('/dashboard/managedoctors');
+                        })
+                }
+            })
     }
     return (
         <div className=''>
@@ -83,7 +86,7 @@ const AddDoctor = () => {
                 </div>
             </div>
             <div className='w-96 mt-20 p-7 shadow-lg bg-white rounded-md lg:mx-auto'>
-            <p className='text-red-600'>For add a doctor first you need to create a account for this doctor</p>
+                <p className='text-red-600'>For add a doctor first you need to create a account for this doctor</p>
                 <form onSubmit={handleSubmit(handleAddDoctor)}>
                     <div className="form-control w-full-max-w-xs">
                         <label className="label"><span className="label-text">Name</span></label>

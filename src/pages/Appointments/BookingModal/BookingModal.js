@@ -17,7 +17,7 @@ const BookingModal = ({ treatment, setTreatment }) => {
   const { data: slots = [] } = useQuery({
     queryKey: ['slot', (selectedDate, appointmentType)],
     queryFn: async () => {
-      const res = await fetch(`https://pet-care-server-lake.vercel.app/appointmentSlots/${doctorEmail}/${appointmentType}?date=${date}`);
+      const res = await fetch(`https://pet-care-server-gamma.vercel.app/appointmentSlots/${doctorEmail}/${appointmentType}?date=${date}`);
       const data = await res.json();
       return data.slots;
     }
@@ -44,7 +44,7 @@ const BookingModal = ({ treatment, setTreatment }) => {
       appointmentType
     }
 
-    fetch('https://pet-care-server-lake.vercel.app/bookings', {
+    fetch('https://pet-care-server-gamma.vercel.app/bookings', {
       method: 'POST',
       headers: {
         'content-type': 'application/json'

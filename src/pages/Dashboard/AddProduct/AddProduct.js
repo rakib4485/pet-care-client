@@ -14,7 +14,7 @@ const AddProduct = () => {
     const { data: categories = [] } = useQuery({
         queryKey: ['category'],
         queryFn: async () => {
-            const res = await fetch('https://pet-care-server-lake.vercel.app/categories');
+            const res = await fetch('https://pet-care-server-gamma.vercel.app/categories');
             const data = await res.json()
             return data;
         }
@@ -43,7 +43,7 @@ const AddProduct = () => {
                     categoryId: data.category
                 }
 
-                fetch('https://pet-care-server-lake.vercel.app/product',{
+                fetch('https://pet-care-server-gamma.vercel.app/product',{
                     method: 'POST',
                     headers: {
                         'content-type': 'application/json'

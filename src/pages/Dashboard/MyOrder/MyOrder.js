@@ -9,7 +9,7 @@ const MyOrder = () => {
     const {data: orders = [], refetch} = useQuery({
         queryKey: ['order', user?.email],
         queryFn: async () => {
-            const url = `https://pet-care-server-lake.vercel.app/orders?email=${user?.email}`;
+            const url = `https://pet-care-server-gamma.vercel.app/orders?email=${user?.email}`;
             const res = await fetch(url);
             const data = await res.json();
             return data;
@@ -27,7 +27,7 @@ const MyOrder = () => {
 
     const handleDeleteOrder = (id, productId) =>{
         console.log(id)
-        fetch(`https://pet-care-server-lake.vercel.app/orders/${id}?productId=${productId}`, {
+        fetch(`https://pet-care-server-gamma.vercel.app/orders/${id}?productId=${productId}`, {
             method: 'DELETE', 
         })
         .then(res => res.json())

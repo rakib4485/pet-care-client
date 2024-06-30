@@ -39,7 +39,7 @@ const Login = () => {
 
     const saveUser = (name, email, image) => {
         const user = {name, email, image, role: 'user'};
-        fetch('https://pet-care-server-lake.vercel.app/users', {
+        fetch('https://pet-care-server-gamma.vercel.app/users', {
             method: 'POST',
             headers: {
               'content-type': 'application/json'

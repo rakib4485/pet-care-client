@@ -1,6 +1,7 @@
 import React from 'react';
 import videoImg from '../../../../assets/video-gallery-bg.jpg'
 import AppointmentButton from '../../../../components/AppointmentButton/AppointmentButton';
+import { Link } from 'react-router-dom';
 
 const Shop = () => {
     return (
@@ -10,7 +11,9 @@ const Shop = () => {
                 <h1 className='text-4xl md:text-5xl lg:text-6xl font-bold text-white'>Food & Toods </h1>
                 <h1 className='text-4xl md:text-5xl lg:text-6xl font-bold text-white'>Here. </h1>
                 <p className="text-white text-md my-5 text-justify">At PCMS, we treat your pets as if they were our own. We understand that your pet is a beloved family member who deserves the best care. With our wide range of nutritious food, essential medicines, and quality supplies, you'll ensure your pet receives top-notch treatment. Experience the convenience and reliability of our services, designed to keep your pet happy and healthy!</p>
+                <Link to='/shop'>
                 <AppointmentButton baseColor={`bg-[#393D72]`} HoverColor={`bg-[#8FC424]`} buttonText={`Shop Now`}/>
+                </Link>
             </div>
             <div className='min-h-full' style={{backgroundImage: `url(${videoImg})`, backgroundSize: "cover"}}>
                 <img src={videoImg} alt="" className='lg:hidden'/>
