@@ -4,7 +4,7 @@ const useSeller = (email) => {
     const [isSeller, setIsSeller] = useState(false);
     const [isSellerLoading, setIsSellerLoading] = useState(true);
     useEffect( () =>{
-        fetch(`https://pet-care-server-gamma.vercel.app/users/seller/${email}`)
+        fetch(`http://localhost:5000/users/seller/${email}`)
         .then(res => res.json())
         .then(data => {
             setIsSeller(data.isSeller);

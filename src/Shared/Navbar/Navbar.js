@@ -20,7 +20,7 @@ const NavbarComponent = () => {
   const { data: carts = [] } = useQuery({
     queryKey: ['cart', user?.email],
     queryFn: async () => {
-      const res = await fetch(`https://pet-care-server-gamma.vercel.app/carts?email=${user?.email}`);
+      const res = await fetch(`http://localhost:5000/carts?email=${user?.email}`);
       const data = await res.json()
       return data;
     }
@@ -29,7 +29,7 @@ const NavbarComponent = () => {
   // const { data: newOrder = [] } = useQuery({
   //   queryKey: ['newOrder'],
   //   queryFn: async () => {
-  //     const res = await fetch(`https://pet-care-server-gamma.vercel.app/my-product-order-notification?email=${user?.email}`);
+  //     const res = await fetch(`http://localhost:5000/my-product-order-notification?email=${user?.email}`);
   //     const data = await res.json()
   //     return data;
   //   }
