@@ -8,7 +8,7 @@ const ShopBody = () => {
     const { data: categories = [] } = useQuery({
         queryKey: ['category'],
         queryFn: async () => {
-            const res = await fetch('https://pet-care-server-gamma.vercel.app/categories');
+            const res = await fetch('http://localhost:5000/categories');
             const data = await res.json()
             return data;
         }

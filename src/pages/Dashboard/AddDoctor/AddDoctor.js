@@ -61,7 +61,7 @@ const AddDoctor = () => {
                         ],
                     }
 
-                    fetch('https://pet-care-server-gamma.vercel.app/appointmentOptions', {
+                    fetch('http://localhost:5000/appointmentOptions', {
                         method: 'POST',
                         headers: {
                             'content-type': 'application/json'

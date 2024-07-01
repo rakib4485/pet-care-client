@@ -10,7 +10,7 @@ const EditProfile = () => {
     const { data: users = [] } = useQuery({
         queryKey: ['users'],
         queryFn: async () => {
-            const res = await fetch(`https://pet-care-server-gamma.vercel.app/user/${user.email}`);
+            const res = await fetch(`http://localhost:5000/user/${user.email}`);
             const data = await res.json();
             return data;
         }
@@ -58,7 +58,7 @@ const EditProfile = () => {
             sEmail          
         }
 
-        fetch(`https://pet-care-server-gamma.vercel.app/edit-doctorDetails?email=${user?.email}`, {
+        fetch(`http://localhost:5000/edit-doctorDetails?email=${user?.email}`, {
       method: 'PUT',
       headers: {
         'content-type': 'application/json'

@@ -8,7 +8,7 @@ const Products = ({ categoryId }) => {
     const { data: products = [], isLoading } = useQuery({
         queryKey: ['product', categoryId],
         queryFn: async () => {
-            const res = await fetch(`https://pet-care-server-gamma.vercel.app/products?category=${categoryId}`);
+            const res = await fetch(`http://localhost:5000/products?category=${categoryId}`);
             const data = await res.json();
             return data;
         }

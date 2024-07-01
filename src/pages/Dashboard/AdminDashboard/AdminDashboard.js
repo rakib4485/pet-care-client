@@ -9,7 +9,7 @@ const AdminDashboard = () => {
     const { data: doctors = [] } = useQuery({
         queryKey: ['doctor'],
         queryFn: async () => {
-            const res = await fetch('https://pet-care-server-gamma.vercel.app/doctors');
+            const res = await fetch('http://localhost:5000/doctors');
             const data = await res.json()
             return data;
         }
@@ -18,7 +18,7 @@ const AdminDashboard = () => {
     const { data: sellers = [] } = useQuery({
         queryKey: ['seller'],
         queryFn: async () => {
-            const res = await fetch('https://pet-care-server-gamma.vercel.app/sellers');
+            const res = await fetch('http://localhost:5000/sellers');
             const data = await res.json()
             return data;
         }
@@ -27,7 +27,7 @@ const AdminDashboard = () => {
     const { data: orders = [] } = useQuery({
         queryKey: ['order'],
         queryFn: async () => {
-            const res = await fetch('https://pet-care-server-gamma.vercel.app/totalOrders');
+            const res = await fetch('http://localhost:5000/totalOrders');
             const data = await res.json()
             return data;
         }
@@ -36,7 +36,7 @@ const AdminDashboard = () => {
     const { data: bookings = [] } = useQuery({
         queryKey: ['booking'],
         queryFn: async () => {
-            const res = await fetch('https://pet-care-server-gamma.vercel.app/allBookings');
+            const res = await fetch('http://localhost:5000/allBookings');
             const data = await res.json()
             return data;
         }

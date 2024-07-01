@@ -11,7 +11,7 @@ const Footer = () => {
                 <div>
                 <div className="flex items-center">
             <Link to="" className="text-white font-bold text-xl flex items-center gap-2">
-              <img src={logo} alt=''className='w-8'/><span className='text-secondary'>PawsitiveCare Hub</span>
+              <img src={logo} alt=''className='w-8'/><span className='text-secondary'>Pet Care</span>
             </Link>
           </div>
                     <div className='flex items-center gap-8 mt-5'>
