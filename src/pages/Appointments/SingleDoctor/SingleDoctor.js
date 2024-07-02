@@ -20,7 +20,7 @@ const SingleDoctor = () => {
     const { data: user = [] } = useQuery({
         queryKey: ['doctor'],
         queryFn: async () => {
-            const res = await fetch(`http://localhost:5000/user/${email}`);
+            const res = await fetch(`https://pet-care-server-gamma.vercel.app/user/${email}`);
             const data = await res.json()
             return data;
         }
@@ -35,11 +35,11 @@ const SingleDoctor = () => {
                 </div>
             </div>
             <div className="mx-[10%] my-20">
-                <div className='flex items-center gap-6'>
+                <div className='flex items-center gap-6 flex-col md:flex-row'>
                     <div className='w-[250px]'>
                         <img src={image} alt='' className='w-full ' />
                     </div>
-                    <div className='w-[60%]'>
+                    <div className='md:w-[60%]'>
                         <h2 className='text-2xl font-bold'>{name}</h2>
                         <h2 className='text-xl font-semibold'>Price: BDT {prices}</h2>
                         <p>{user?.doctorDetails?.about.slice(0, 200)} ...</p>
@@ -58,15 +58,15 @@ const SingleDoctor = () => {
                     <Tabs activeLabel="one">
                         <Tabs.List>
                             <Tabs.Item label="one" className="flex items-center gap-2">
-                                <Book size={20} />
+                                <Book size={10} />
                                 Description
                             </Tabs.Item>
                             <Tabs.Item className="flex items-center gap-2" label="two">
-                                <User size={20} />
+                                <User size={10} />
                                 About
                             </Tabs.Item>
                             <Tabs.Item className="flex items-center gap-2" label="three">
-                                <Phone size={20} />
+                                <Phone size={10} />
                                 Contact
                             </Tabs.Item>
                         </Tabs.List>

@@ -9,7 +9,7 @@ const AdminDashboard = () => {
     const { data: doctors = [] } = useQuery({
         queryKey: ['doctor'],
         queryFn: async () => {
-            const res = await fetch('http://localhost:5000/doctors');
+            const res = await fetch('https://pet-care-server-gamma.vercel.app/doctors');
             const data = await res.json()
             return data;
         }
@@ -18,7 +18,7 @@ const AdminDashboard = () => {
     const { data: sellers = [] } = useQuery({
         queryKey: ['seller'],
         queryFn: async () => {
-            const res = await fetch('http://localhost:5000/sellers');
+            const res = await fetch('https://pet-care-server-gamma.vercel.app/sellers');
             const data = await res.json()
             return data;
         }
@@ -27,7 +27,7 @@ const AdminDashboard = () => {
     const { data: orders = [] } = useQuery({
         queryKey: ['order'],
         queryFn: async () => {
-            const res = await fetch('http://localhost:5000/totalOrders');
+            const res = await fetch('https://pet-care-server-gamma.vercel.app/totalOrders');
             const data = await res.json()
             return data;
         }
@@ -36,7 +36,7 @@ const AdminDashboard = () => {
     const { data: bookings = [] } = useQuery({
         queryKey: ['booking'],
         queryFn: async () => {
-            const res = await fetch('http://localhost:5000/allBookings');
+            const res = await fetch('https://pet-care-server-gamma.vercel.app/allBookings');
             const data = await res.json()
             return data;
         }
@@ -111,7 +111,7 @@ const AdminDashboard = () => {
                         <h2 className='text-xl font-bold'>Summery</h2>
                     </div>
                 </div>
-                <div className='grid grid-cols-4 gap-6 mx-10'>
+                <div className='grid md:grid-cols-2 lg:grid-cols-4 gap-6 mx-10'>
                     {
                         summeryCardItems.map(summery => (
                             <div className={`flex items-center justify-between gap-3 border px-[10px] py-5 rounded-lg  ${summery.style}`}>

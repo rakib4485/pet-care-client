@@ -35,7 +35,7 @@ const Services = () => {
         <div className='mx-[10%]'>
             <div className='my-20'>
             <h4 className="text-2xl font-bold text-primary text-center">// <span className='mx-3'>Services</span>  //</h4>
-            <h2 className="text-6xl font-bold text-center text-secondary relative">What We Do<span className='text-[#FF4880] text-8xl animate-ping absolute inline-flex h-5 w-5 rounded-full bg-[#FF4880] opacity-75 bottom-0 ml-3'></span> <span class="relative inline-flex rounded-full h-3 w-3 bg-[#FF4880]"></span></h2>
+            <h2 className="text-4xl md:text-6xl font-bold text-center text-secondary relative">What We Do<span className='text-[#FF4880] text-8xl animate-ping absolute inline-flex h-5 w-5 rounded-full bg-[#FF4880] opacity-75 bottom-0 ml-3'></span> <span class="relative inline-flex rounded-full h-3 w-3 bg-[#FF4880]"></span></h2>
             </div>
             <div className='grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-20'>
                 {

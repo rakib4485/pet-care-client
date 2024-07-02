@@ -4,10 +4,10 @@ import { Link } from 'react-router-dom';
 const ProductCard = ({ product }) => {
     const { _id, name, price, img } = product;
     return (
-        <div className='p-4 hover:shadow-xl rounded-md  cursor-pointer'>
+        <div className='p-4 hover:shadow-xl w-full rounded-md  cursor-pointer'>
             <Link to={`/products/${_id}`}>
                 <div>
-                    <img src={img} alt="" className='rounded-md w-[250px] h-[300px]' />
+                    <img src={img} alt="" className='rounded-md w-full h-[300px]' />
                 </div>
                 <div className='my-5'>
                     <h4 className="text-xl font-bold text-secondary text-center hover:text-primary">{name}</h4>

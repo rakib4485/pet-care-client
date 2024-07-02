@@ -8,7 +8,7 @@ const Products = ({ categoryId }) => {
     const { data: products = [], isLoading } = useQuery({
         queryKey: ['product', categoryId],
         queryFn: async () => {
-            const res = await fetch(`http://localhost:5000/products?category=${categoryId}`);
+            const res = await fetch(`https://pet-care-server-gamma.vercel.app/products?category=${categoryId}`);
             const data = await res.json();
             return data;
         }
@@ -44,8 +44,8 @@ const Products = ({ categoryId }) => {
     }
     // console.log('hello',products);
     return (
-        <div>
-            <div className='grid grid-cols-3 gap-6'>
+        <div id='product'>
+            <div className='grid md:grid-cols-2 lg:grid-cols-3 gap-6'>
                 {
                     records.map(product => <ProductCard
                         key={product._id}

@@ -11,17 +11,17 @@ const Gallery = () => {
           <div className='mx[8%]'>
           <h1 className='text-primary text-2xl font-bold text-center'>Photo Gallery</h1>
             <h1 className='choose-titles text-3xl lg:text-5xl font-bold text-center my-8'>Looking & Smelling Great!</h1>
-            <div className='lg:flex justify-center items-center gap-5'>
+            <div className='md:flex justify-center items-center gap-5'>
                 <div>
-                    <img src={galleryOne} alt="" />
-                    <img className='mt-5' src={galleryTwo} alt="" />
+                    <img src={galleryOne} alt="" className='w-full'/>
+                    <img className='mt-5 w-full' src={galleryTwo} alt="" />
                 </div>
                 <div>
-                    <img className='rounded-2xl hidden lg:block' src={galleryThree} alt="" />
+                    <img className='rounded-2xl my-5' src={galleryThree} alt="" />
                 </div>
-                <div className='mt-5 lg:mt-0'>
-                    <img src={galleryFour} alt="" />
-                    <img className='mt-5' src={galleryFive} alt="" />
+                <div className='mt-5 lg:mt-0 '>
+                    <img src={galleryFour} alt="" className='w-full'/>
+                    <img className='mt-5 w-full' src={galleryFive} alt="" />
                 </div>
             </div>
           </div>

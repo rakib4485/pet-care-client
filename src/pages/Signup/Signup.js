@@ -71,7 +71,7 @@ const Signup = () => {
 
     const saveUser = (name, email, role, image) => {
         const user = { name, email, role, image };
-        fetch('http://localhost:5000/users', {
+        fetch('https://pet-care-server-gamma.vercel.app/users', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'
@@ -84,10 +84,10 @@ const Signup = () => {
             })
     }
     return (
-        <div className='grid grid-cols-2'>
+        <div className='grid lg:grid-cols-2'>
             <div className='mx-[10%]'>
                 <div className="my-20">
-                    <h2 className="text-5xl font-bold text-secondary">Get Started</h2>
+                    <h2 className="text-3xl md:text-5xl font-bold text-secondary">Get Started</h2>
                     <p>Sign up to access all feature</p>
                     <div className="form-control mt-6 ">
                         <button onClick={handleGoogleSignIn} className="flex items-center justify-center btn btn-secondary btn-outline text-lg">

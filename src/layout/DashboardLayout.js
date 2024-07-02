@@ -43,7 +43,7 @@ const DashboardLayout = () => {
       nid
     }
 
-    fetch('http://localhost:5000/sellerRequest', {
+    fetch('https://pet-care-server-gamma.vercel.app/sellerRequest', {
       method: 'PUT',
       headers: {
         'content-type': 'application/json'
@@ -71,15 +71,16 @@ const DashboardLayout = () => {
       <NavbarComponent />
       <div className="drawer lg:drawer-open">
         <input id="dashboard-drawer" type="checkbox" className="drawer-toggle" />
-        <div className="drawer-content flex flex-col bg-gray-200  p-5">
+        <div className="drawer-content">
+          
           <Outlet></Outlet>
         </div>
-        <div className="drawer-side bg-gray-800 text-white">
-          <label htmlFor="dashboard-drawer" className="drawer-overlay"></label>
-          <div>
+        <div className="drawer-side ">
+        <label htmlFor="dashboard-drawer" aria-label="close sidebar" className="drawer-overlay bg-[#2B3440]"></label>
+          {/* <div>
             <img src="" alt="" />
-          </div>
-          <ul className="menu p-4 w-80 min-h-full bg-base-200 text-base-content">
+          </div> */}
+          <ul className="menu p-4 w-[300px] min-h-full bg-gray-800 text-white">
             {/* Sidebar content here */}
             <div classNam e='mt-5 md:w-[280px] px-5 border-b-2 pb-5 '>
               <div className="avatar">
