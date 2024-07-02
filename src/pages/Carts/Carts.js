@@ -13,7 +13,7 @@ const Carts = () => {
     const { data: carts = [] } = useQuery({
         queryKey: ['cart', user?.email],
         queryFn: async () => {
-            const res = await fetch(`http://localhost:5000/carts?email=${user?.email}`);
+            const res = await fetch(`https://pet-care-server-gamma.vercel.app/carts?email=${user?.email}`);
             const data = await res.json()
             return data;
         }
@@ -41,8 +41,8 @@ const Carts = () => {
             {
                 !carts.length ? <EmptyCarts/> : 
                 <div className='mx-[10%] my-20'>
-                <div className='flex gap-6'>
-                    <div>
+                <div className='flex gap-6 flex-col lg:flex-row'>
+                    <div className='lg:w-[65%]'>
                         <div className="overflow-x-auto">
                             <table className="table">
                                 {/* head */}
@@ -60,7 +60,7 @@ const Carts = () => {
                                     {
                                         carts.map(cart => <tr className="hover" key={cart._id}>
                                             <th></th>
-                                            <td><img src={cart.img} alt='' className='w-12' /></td>
+                                            <td><img src={cart.img} alt='' className='md:w-12' /></td>
                                             <td>{cart.productName}</td>
                                             <td>৳{cart.price}</td>
                                             <td>{cart.quantity}</td>

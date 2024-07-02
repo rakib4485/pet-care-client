@@ -8,7 +8,7 @@ const MyPatients = () => {
     const {data: bookings=[]} = useQuery({
         queryKey: ['booking', user?.email],
         queryFn: async() => {
-            const res = await fetch(`http://localhost:5000/my-appointments?email=${user?.email}`);
+            const res = await fetch(`https://pet-care-server-gamma.vercel.app/my-appointments?email=${user?.email}`);
             const data = res.json()
             return data;
         }

@@ -9,7 +9,7 @@ const MyProductOrder = () => {
     const { data: orders = [], refetch } = useQuery({
         queryKey: ['order', user?.email],
         queryFn: async () => {
-            const res = await fetch(`http://localhost:5000/my-product-order?email=${user?.email}`);
+            const res = await fetch(`https://pet-care-server-gamma.vercel.app/my-product-order?email=${user?.email}`);
             const data = await res.json()
             return data;
         }
@@ -19,7 +19,7 @@ const MyProductOrder = () => {
     const {data: products = []} = useQuery({
         queryKey: ['product'],
         queryFn: async () =>{
-            const res = await fetch(`http://localhost:5000/my-product?email=${user?.email}`);
+            const res = await fetch(`https://pet-care-server-gamma.vercel.app/my-product?email=${user?.email}`);
             const data = await res.json()
             return data;
         }
@@ -36,7 +36,7 @@ const MyProductOrder = () => {
 
     const handleDeleteOrder = (id, productId) =>{
         console.log(id)
-        fetch(`http://localhost:5000/orders/${id}?productId=${productId}`, {
+        fetch(`https://pet-care-server-gamma.vercel.app/orders/${id}?productId=${productId}`, {
             method: 'DELETE', 
         })
         .then(res => res.json())
@@ -49,7 +49,7 @@ const MyProductOrder = () => {
     }
     const handleConfirmOrder = (id, productId) =>{
         console.log(id)
-        fetch(`http://localhost:5000/confirm-order/${id}?productId=${productId}`, {
+        fetch(`https://pet-care-server-gamma.vercel.app/confirm-order/${id}?productId=${productId}`, {
             method: 'PUT', 
         })
         .then(res => res.json())
@@ -101,7 +101,7 @@ const MyProductOrder = () => {
                         <h2 className='text-xl font-bold'>Summery</h2>
                     </div>
                 </div>
-                <div className='grid grid-cols-3 gap-6 mx-10'>
+                <div className='grid md:grid-cols-3 gap-6 mx-10'>
                     {
                         summeryCardItems.map(summery => (
                             <div className={`flex items-center justify-between gap-3 border px-[10px] py-5 rounded-lg  ${summery.style}`}>

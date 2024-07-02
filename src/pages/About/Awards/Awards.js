@@ -7,14 +7,14 @@ import { FaAward } from "react-icons/fa6";
 const Awards = () => {
     return (
         <div className='my-9 awards-bg py-36'>
-            <div className='mx-[9%] grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 justify-center'>
+            <div className='mx-[9%] grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 justify-center'>
                 <div className='flex items-center gap-4'>
                     <div>
                     <FaUserDoctor className='text-primary text-6xl font-bold' />
                     </div>
                     <div className='text-white'>
-                        <h1 className='text-5xl font-bold'>730+</h1>
-                        <h3 className='text-2xl font-bold mt-3'>Happy Clients</h3>
+                        <h1 className='text-3xl md:text-5xl font-bold'>730+</h1>
+                        <h3 className='text-xl md:text-2xl font-bold mt-3'>Happy Clients</h3>
                     </div>
                 </div>
                 <div className='flex items-center gap-4'>
@@ -22,8 +22,8 @@ const Awards = () => {
                     <FaAward className='text-primary text-5xl font-bold' />
                     </div>
                     <div className='text-white'>
-                        <h1 className='text-5xl font-bold'>80+</h1>
-                        <h3 className='text-2xl font-bold mt-3'>Professionals</h3>
+                        <h1 className='text-3xl md:text-5xl font-bold'>80+</h1>
+                        <h3 className='text-xl md:text-2xl font-bold mt-3'>Professionals</h3>
                     </div>
                 </div>
                 <div className='flex items-center gap-4'>
@@ -31,8 +31,8 @@ const Awards = () => {
                     <PiDog className='text-primary text-6xl font-bold' />
                     </div>
                     <div className='text-white'>
-                        <h1 className='text-5xl font-bold'>820+</h1>
-                        <h3 className='text-2xl font-bold mt-3'>Adopted Pets</h3>
+                        <h1 className='text-3xl md:text-5xl font-bold'>820+</h1>
+                        <h3 className='text-xl md:text-2xl font-bold mt-3'>Adopted Pets</h3>
                     </div>
                 </div>
                 <div className='flex items-center gap-4'>
@@ -40,8 +40,8 @@ const Awards = () => {
                     <CiTrophy className='text-primary text-6xl font-bold' />
                     </div>
                     <div className='text-white'>
-                        <h1 className='text-5xl font-bold'>90+</h1>
-                        <h3 className='text-2xl font-bold mt-3'>Awards</h3>
+                        <h1 className='text-3xl md:text-5xl font-bold'>90+</h1>
+                        <h3 className='text-xl md:text-2xl font-bold mt-3'>Awards</h3>
                     </div>
                 </div>
             </div>

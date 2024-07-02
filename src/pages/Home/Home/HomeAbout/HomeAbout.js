@@ -9,10 +9,10 @@ const HomeAbout = () => {
             <div className='grid grid-cols-1 lg:grid-cols-2 gap-8'>
                 <div className='flex items-center'>
                     <div>
-                    <img src={aboutImg} alt="" />
+                    <img src={aboutImg} alt="" className='w-[300px] md:w-full'/>
                     </div>
-                    <div className='-mt-72 -ml-52 px-5  py-6 lg:px-9 lg:py-8 rounded-3xl' style={{backgroundColor: '#8fc424'}}>
-                        <h1 className='text-white'> <span className='text-6xl font-bold'>20</span> <br /> <span className='font-semibold lg:font-bold'>Years Experience</span></h1>
+                    <div className='-mt-64 md:-mt-72 -ml-44 md:-ml-52 px-5  py-6 lg:px-9 lg:py-8 rounded-3xl' style={{backgroundColor: '#8fc424'}}>
+                        <h1 className='text-white'> <span className='md:text-6xl font-bold'>20</span> <br /> <span className='font-semibold lg:font-bold'>Years Experience</span></h1>
                     </div>
                 </div>
                 <div className='mt-5 lg:mt-0'>

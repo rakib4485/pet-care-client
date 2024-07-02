@@ -9,14 +9,14 @@ const AllDoctors = () => {
     const {data: doctors = [], refetch} = useQuery({
         queryKey: ['doctor'],
         queryFn: async () => {
-            const res = await fetch('http://localhost:5000/appointmentOption');
+            const res = await fetch('https://pet-care-server-gamma.vercel.app/appointmentOption');
             const data = await res.json()
             return data;
         }
     })
     console.log(doctors)
     const handleDeleteProduct = () => {
-        fetch(`http://localhost:5000/doctors/${doctorId}`, {
+        fetch(`https://pet-care-server-gamma.vercel.app/doctors/${doctorId}`, {
             method: 'DELETE',
         })
             .then(res => res.json())

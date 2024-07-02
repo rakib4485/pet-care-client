@@ -39,7 +39,7 @@ const Login = () => {
 
     const saveUser = (name, email, image) => {
         const user = {name, email, image, role: 'user'};
-        fetch('http://localhost:5000/users', {
+        fetch('https://pet-care-server-gamma.vercel.app/users', {
             method: 'POST',
             headers: {
               'content-type': 'application/json'
@@ -54,9 +54,9 @@ const Login = () => {
       
 
     return (
-        <div className='grid grid-cols-2 items-center'>
-            <div className='mx-[10%]'>
-                <h2 className="text-5xl font-bold text-secondary">Welcome Back!!</h2>
+        <div className='grid lg:grid-cols-2 items-center'>
+            <div className='mx-[10%] my-20 lg:my-0'>
+                <h2 className="text-3xl md:text-5xl font-bold text-secondary">Welcome Back!!</h2>
                 <p>Sign in to continue your journey</p>
                 <div className="form-control mt-6 ">
                     <button onClick={handleGoogleSignIn} className="flex items-center justify-center btn btn-secondary btn-outline text-lg">

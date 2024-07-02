@@ -20,22 +20,22 @@ const NavbarComponent = () => {
   const { data: carts = [] } = useQuery({
     queryKey: ['cart', user?.email],
     queryFn: async () => {
-      const res = await fetch(`http://localhost:5000/carts?email=${user?.email}`);
+      const res = await fetch(`https://pet-care-server-gamma.vercel.app/carts?email=${user?.email}`);
       const data = await res.json()
       return data;
     }
   })
 
-  // const { data: newOrder = [] } = useQuery({
-  //   queryKey: ['newOrder'],
-  //   queryFn: async () => {
-  //     const res = await fetch(`http://localhost:5000/my-product-order-notification?email=${user?.email}`);
-  //     const data = await res.json()
-  //     return data;
-  //   }
-  // })
+  const { data: newOrder = [] } = useQuery({
+    queryKey: ['newOrder'],
+    queryFn: async () => {
+      const res = await fetch(`https://pet-care-server-gamma.vercel.app/my-product-order-notification?email=${user?.email}`);
+      const data = await res.json()
+      return data;
+    }
+  })
 
-  // console.log(newOrder)
+  console.log(newOrder)
 
 
   const toggleMenu = () => {
@@ -73,18 +73,40 @@ const NavbarComponent = () => {
       <nav className="bg-gray-800 p-4">
         <div className="container mx-auto flex justify-between items-center">
           <div className="flex items-center">
+          <label htmlFor="dashboard-drawer" className="text-white focus:outline-none focus:text-white lg:hidden"><svg
+                className="h-6 w-6"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                {isOpen ? (
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
+                    d="M6 18L18 6M6 6l12 12"
+                  />
+                ) : (
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
+                    d="M4 6h16M4 12h16M4 18h16"
+                  />
+                )}
+              </svg></label>
             <Link to="" className="text-white font-bold text-xl flex items-center gap-2">
               <img src={logo} alt='' className='w-8' />Pet Care
             </Link>
           </div>
           {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center space-x-4 text-white">
+          <div className="hidden lg:flex items-center space-x-4 text-white">
             {menuItems}
             <div className="navbar-end hidden md:flex">
               {user?.uid ?
                 <>
                   <Link className='mr-4' to="/dashboard">Dashboard</Link>
-                  {/* {
+                   {
                     isSeller &&
                     <Link to="/dashboard/my-product-order" className="text-white mr-16">
                       <div className='mr-5'>
@@ -95,7 +117,7 @@ const NavbarComponent = () => {
                         }
                       </div>
                     </Link>
-                  } */}
+                  } 
                   <Link onClick={handleLogOut}>Log out</Link>
                 </>
                 :
@@ -104,7 +126,7 @@ const NavbarComponent = () => {
             </div>
           </div>
           {/* Mobile Navigation */}
-          <div className="md:hidden flex items-center">
+          <div className="lg:hidden flex items-center">
             <button
               onClick={toggleMenu}
               className="text-white focus:outline-none focus:text-white"
@@ -136,12 +158,13 @@ const NavbarComponent = () => {
         </div>
         {/* Mobile Menu */}
         {isOpen && (
-          <div className="md:hidden bg-gray-800 fixed inset-0 z-50">
+          <div className="lg:hidden  fixed inset-0 z-[999]">
             <div className="flex justify-end h-full items-center">
               <div className="bg-gray-800 w-3/4 h-full">
-                <div className="flex flex-col justify-center items-start h-full space-y-4">
+                <div className="flex flex-col justify-center items-start h-full space-y-4 pl-10">
+                  
                   {menuItems}
-                  <div className="md:hidden text-white">
+                  <div className="lg:hidden text-white">
                     {user?.uid ?
                       <>
                         <Link className='mr-4' to="/dashboard">Dashboard</Link>
@@ -167,7 +190,7 @@ const NavbarComponent = () => {
 
               </div>
               <div
-                className="bg-black opacity-50 w-full h-full cursor-pointer"
+                className="bg-transparent opacity-50 w-full h-full cursor-pointer"
                 onClick={toggleMenu}
               ></div>
             </div>

@@ -46,7 +46,7 @@ const Testimonial = () => {
             <div className='absolute top-24 right-6 md:right-36'>
                 <img src={client2} alt="" className='animate-[wiggle_5s_ease-in-out_infinite]'/>
             </div>
-            <div className="text-center text-6xl font-bold text-[#393D72] mt-10 relative">Clients Feedback<span className='text-[#FF4880] text-8xl animate-ping absolute inline-flex h-5 w-5 rounded-full bg-[#FF4880] opacity-75 bottom-0 ml-3'></span> <span class="relative inline-flex rounded-full h-3 w-3 bg-[#FF4880]"></span></div>
+            <div className="text-center text-4xl md:text-6xl font-bold text-[#393D72] mt-10 relative">Clients Feedback<span className='text-[#FF4880] text-8xl animate-ping absolute inline-flex h-5 w-5 rounded-full bg-[#FF4880] opacity-75 bottom-0 ml-3'></span> <span class="relative inline-flex rounded-full h-3 w-3 bg-[#FF4880]"></span></div>
             <span class=""></span>
   
             <div className="bg-white rounded-2xl mx-[10%] p-10 mt-20 shadow">

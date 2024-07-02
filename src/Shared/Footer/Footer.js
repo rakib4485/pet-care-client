@@ -23,9 +23,9 @@ const Footer = () => {
                 <div>
                     <h1 className='text-3xl font-bold' style={{color: '#393d72'}}>Contact Us</h1>
                     <div className='mt-5'>
-                        <p>(+1800) 456-789</p>
+                        <p>(+880) 1906283194</p>
                         <p className='my-2'>Contact@example.com</p>
-                        <p>Box 565, Charlestown,Nevis, West Indies, Caribbean</p>
+                        <p>34, Bardhanbari, 2/9 Mirpur 1, Dhaka 1216</p>
                     </div>
                 </div>
                 <div>

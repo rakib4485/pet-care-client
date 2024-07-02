@@ -32,7 +32,7 @@ const ProductOrder = ({ product }) => {
             sellerEmail
         }
 
-        fetch('http://localhost:5000/carts', {
+        fetch('https://pet-care-server-gamma.vercel.app/carts', {
             method: 'POST',
             headers: {
               'content-type': 'application/json'
@@ -46,9 +46,9 @@ const ProductOrder = ({ product }) => {
     }
     return (
         <div className='mx-[10%]'>
-            <div className="grid grid-cols-2 gap-6 items-center">
+            <div className="grid md:grid-cols-2 gap-6 items-center">
                 <div className='p-4 border rounded-lg'>
-                    <img src={img} alt="" className='w-full rounded-lg' />
+                    <img src={img} alt="" className='max-w[300px] h-[400px] rounded-lg mx-auto' />
                 </div>
                 <div>
                     <h2 className="text-4xl font-bold text-secondary">{name}</h2>
@@ -56,7 +56,7 @@ const ProductOrder = ({ product }) => {
                     <p className='text-slate-600 text-lg'>Lorem Ipsum, you need to be sure there isn’t anything embarrassing hidden in the middle of text.</p>
 
                     <hr className='my-10' />
-                    <div className='flex gap-6 items-center'>
+                    <div className='md:flex gap-6 items-center'>
                         <div className='border rounded-3xl w-[150px] h-10'>
                             <div className='flex items-center justify-between'>
                                 <div className='h-10 w-10 rounded-full border text-center hover:bg-primary cursor-pointer'>
@@ -70,9 +70,9 @@ const ProductOrder = ({ product }) => {
                                 </div>
                             </div>
                         </div>
-                        <div onClick={uploadCart}>
+                        <div onClick={uploadCart} className='mt-10 md:mt-0'>
 
-                            <AppointmentButton baseColor={`bg-[#FF4880]`} HoverColor={`bg-[#8FC424]`} buttonText={`ADD TO CART`}/>
+                            <AppointmentButton baseColor={`bg-[#FF4880] text-xl`} HoverColor={`bg-[#8FC424]`} buttonText={`ADD TO CART`}/>
                         </div>
                     </div>
                 </div>

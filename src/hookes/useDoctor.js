@@ -5,7 +5,7 @@ const useDoctor = (email) => {
     const [isDoctor, setIsDoctor] = useState(false);
     const [isDocotrLoading, setIDoctorLoading] = useState(true);
     useEffect( () =>{
-        fetch(`http://localhost:5000/users/doctor/${email}`)
+        fetch(`https://pet-care-server-gamma.vercel.app/users/doctor/${email}`)
         .then(res => res.json())
         .then(data => {
             setIsDoctor(data.isDoctor);
