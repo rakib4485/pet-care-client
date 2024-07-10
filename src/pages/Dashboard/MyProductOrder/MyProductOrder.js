@@ -29,15 +29,21 @@ const MyProductOrder = () => {
         let total = 0;
         orders.forEach(cart => {
             // console.log(cart.quantity * cart.price)
-            total = total + cart.price
-            setOrserTotal(total)
+            if(cart.product.status !== 'deleted'){
+                // console.log(cart.status)
+                const quantity = parseInt(cart.product.quantity)
+                const price = parseInt(cart.product.price)
+                total = total + (price * quantity)
+                setOrserTotal(total)
+            }
+            
         })
     }, [orders]);
 
     const handleDeleteOrder = (id, productId) =>{
         console.log(id)
-        fetch(`https://pet-care-server-gamma.vercel.app/orders/${id}?productId=${productId}`, {
-            method: 'DELETE', 
+        fetch(`https://pet-care-server-gamma.vercel.app/delete-order/${id}?productId=${productId}`, {
+            method: 'PUT', 
         })
         .then(res => res.json())
         .then(data => {
@@ -162,7 +168,7 @@ const MyProductOrder = () => {
                                 <td>{booking.product.productName}</td>
                                 <td>{booking.orderDate}</td>
                                 <td><span className='text-2xl'></span>{booking.product.quantity}</td>
-                                <td><span className='text-2xl'>৳</span>{booking.price}</td>
+                                <td><span className='text-2xl'>৳</span>{booking.product.quantity * booking.product.price}</td>
                                 <td><small className='font-semibold'>{booking.paymentType}</small></td>
                                 <td>{
                                     booking.product.status ? <span>{booking.product.status}</span>: <sapn className='btn btn-success btn-xs' onClick={() => handleConfirmOrder(booking.orderId, booking.product._id)}>Confirm</sapn>

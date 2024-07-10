@@ -74,7 +74,7 @@ const MyOrder = () => {
                                     <td>{delevaryDates(order?.orderDate)}</td>
                                     <td>
                                         {
-                                            product.status ? <span className='text-success text-xl font-semibold'>{product.status}</span> : <span>Processing</span>
+                                            product.status ? <span className={`text-xl font-semibold capitalize ${product.status === 'confirmed' ? 'text-success' : 'text-error'}`}>{product.status}</span> : <span>Processing</span>
                                         }
                                     </td>
                                     {
