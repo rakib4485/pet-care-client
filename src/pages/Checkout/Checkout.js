@@ -76,21 +76,21 @@ const Checkout = () => {
           })
     }
     return (
-        <div className=''>
+        <div >
             <div style={{ background: `url(${banner})`, backgroundSize: 'cover', backgroundPosition: 'center' }}>
                 <div className='py-20'>
                     <h1 className="text-7xl text-center font-bold text-secondary">Checkout</h1>
 
                 </div>
             </div>
-            <div className='grid grid-cols-2 gap-10 mx-[10%]'>
+            <div className='grid lg:grid-cols-2 gap-10 mx-[10%]'>
                 <div >
                     <h1 className='text-3xl text-secondary font-bold'>Shipping Details</h1>
                     <form className="my-10 bg-slate-200 p-6 rounded-lg" onSubmit={handleOrder}>
 
                         <div className="form-control w-full">
-                            <div className='flex gap-6'>
-                                <div>
+                            <div className='md:flex gap-6'>
+                                <div className=''>
                                     <label className="label">
                                         <span className="label-text">First Name</span>
                                     </label>
@@ -101,7 +101,7 @@ const Checkout = () => {
                                         className="input input-bordered"
                                     />
                                 </div>
-                                <div>
+                                <div className=''>
                                     <label className="label">
                                         <span className="label-text">Last Name</span>
                                     </label>
@@ -175,7 +175,7 @@ const Checkout = () => {
 
                     </form>
                 </div>
-                <div>
+                <div className=''>
                     <h1 className='text-4xl text-secondary font-bold'>Order Details</h1>
                     <table className="table mt-10 bg-slate-200 p-6">
                             {/* head */}

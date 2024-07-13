@@ -147,31 +147,31 @@ const MyProductOrder = () => {
                     <tbody>
                         {orders &&
                             [...orders].reverse().slice(0,10).map((booking, i) => <tr key={i}>
-                                <td><small>{booking.product._id}</small></td>
+                                <td><small>{booking?.product?._id}</small></td>
                                 <td>
                                     <div className='flex gap-3 items-center'>
                                         <div>
                                             {
                                                 booking.userImage ? 
-                                                <div className='h-10 w-10 rounded-full'><img src={booking.userImage} alt=''/></div> :
+                                                <div className='h-10 w-10 rounded-full'><img src={booking?.userImage} alt=''/></div> :
                                                 <div className='h-10 w-10 rounded-full bg-[#f5d6e4] flex justify-center items-center'>
                                                     <span className='text-primary font-bold'>C</span>
                                                 </div>
                                             }
                                         </div>
                                         <div>
-                                            <p className='font-semibold'><small>{booking.name}</small></p>
-                                            <p className='-mt-3'><small>{booking.customerEmail}</small></p>
+                                            <p className='font-semibold'><small>{booking?.name}</small></p>
+                                            <p className='-mt-3'><small>{booking?.customerEmail}</small></p>
                                         </div>
                                     </div>
                                 </td>
-                                <td>{booking.product.productName}</td>
-                                <td>{booking.orderDate}</td>
-                                <td><span className='text-2xl'></span>{booking.product.quantity}</td>
-                                <td><span className='text-2xl'>৳</span>{booking.product.quantity * booking.product.price}</td>
-                                <td><small className='font-semibold'>{booking.paymentType}</small></td>
+                                <td>{booking?.product?.productName}</td>
+                                <td>{booking?.orderDate}</td>
+                                <td><span className='text-2xl'></span>{booking?.product?.quantity}</td>
+                                <td><span className='text-2xl'>৳</span>{booking?.product?.quantity * booking.product.price}</td>
+                                <td><small className='font-semibold'>{booking?.paymentType}</small></td>
                                 <td>{
-                                    booking.product.status ? <span>{booking.product.status}</span>: <sapn className='btn btn-success btn-xs' onClick={() => handleConfirmOrder(booking.orderId, booking.product._id)}>Confirm</sapn>
+                                    booking?.product?.status ? <span>{booking.product.status}</span>: <sapn className='btn btn-success btn-xs' onClick={() => handleConfirmOrder(booking.orderId, booking.product._id)}>Confirm</sapn>
                                     }</td>
                                 <td>{
                                     !booking.product.status &&
