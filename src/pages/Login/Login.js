@@ -88,11 +88,11 @@ const Login = () => {
                                 placeholder="password"
                                 className="input input-bordered"
                             />
-                            <label className="label">
+                            {/* <label className="label">
                                 <Link className="label-text-alt link link-hover">
                                     Forgot password?
                                 </Link>
-                            </label>
+                            </label> */}
                         </div>
 
                         <div className="form-control mt-6">
