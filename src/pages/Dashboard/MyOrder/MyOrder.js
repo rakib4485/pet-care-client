@@ -1,12 +1,15 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { AuthContext } from '../../../contexts/AuthProvider';
 import { useQuery } from '@tanstack/react-query';
 import { format } from 'date-fns';
 import toast from 'react-hot-toast';
 
 const MyOrder = () => {
-    const {user} = useContext(AuthContext)
-    const {data: orders = [], refetch} = useQuery({
+    const { user } = useContext(AuthContext);
+    const [currentPage, setCurrentPage] = useState(1);
+    const recordsPerPage = 10;
+
+    const { data: orders = [], refetch } = useQuery({
         queryKey: ['order', user?.email],
         queryFn: async () => {
             const url = `https://pet-care-server-gamma.vercel.app/orders?email=${user?.email}`;
@@ -14,78 +17,131 @@ const MyOrder = () => {
             const data = await res.json();
             return data;
         }
-    })
-    console.log(orders)
-    const delevaryDates = (date = 'May 14, 2024') => {
-        const orderDate = new Date(date); // Parse the date from the API response
-        const deliveryDate = new Date(orderDate.getTime());
-        deliveryDate.setDate(deliveryDate.getDate() + 7);
-        console.log(deliveryDate)
-        const del = format(new Date(deliveryDate), 'PP');
-        return del;
-    }
+    });
 
-    const handleDeleteOrder = (id, productId) =>{
-        console.log(id)
+    const deliveryDate = (date = 'May 14, 2024') => {
+        const orderDate = new Date(date);
+        const delivery = new Date(orderDate.getTime());
+        delivery.setDate(delivery.getDate() + 7);
+        return format(new Date(delivery), 'PP');
+    };
+
+    const handleDeleteOrder = (id, productId) => {
         fetch(`https://pet-care-server-gamma.vercel.app/orders/${id}?productId=${productId}`, {
-            method: 'DELETE', 
+            method: 'DELETE',
         })
-        .then(res => res.json())
-        .then(data => {
-            if(data.modifiedCount > 0){
-                refetch();
-                toast.success(`Order deleted successfully`)
-            }
-        })
-    }
+            .then(res => res.json())
+            .then(data => {
+                if (data.modifiedCount > 0) {
+                    refetch();
+                    toast.success(`Order deleted successfully`);
+                }
+            });
+    };
+
+    // Flatten all products into a single array for pagination
+    const allProducts = orders.flatMap(order =>
+        order.products.map(product => ({
+            ...product,
+            orderId: order._id,
+            paymentType: order.paymentType,
+            orderDate: order.orderDate
+        }))
+    );
+
+    // Pagination logic
+    const indexOfLastRecord = currentPage * recordsPerPage;
+    const indexOfFirstRecord = indexOfLastRecord - recordsPerPage;
+    const currentRecords = allProducts.slice(indexOfFirstRecord, indexOfLastRecord);
+    const totalPages = Math.ceil(allProducts.length / recordsPerPage);
+
+    const paginate = (pageNumber) => setCurrentPage(pageNumber);
+
     return (
-        <div className='bg-gray-200 h-full'>
+        <div className='bg-gray-100 min-h-screen p-5'>
+            {/* Header */}
             <div className='flex gap-3 py-5 items-center shadow-xl rounded-xl bg-white'>
-                <div className='w-[4px] h-10 bg-primary  -ml-[1px] rounded-full'></div>
-                <div>
-                    <h2 className='text-2xl font-bold'>My orders</h2>
-                </div>
+                <div className='w-[4px] h-10 bg-primary -ml-[1px] rounded-full'></div>
+                <h2 className='text-2xl font-bold'>My Orders</h2>
             </div>
-            <div className="overflow-x-auto mt-10">
-                <table className="table w-full text-lg">
+
+            {/* Table */}
+            <div className="overflow-x-auto mt-8 shadow-xl rounded-xl bg-white p-5">
+                <table className="table w-full text-center">
                     <thead>
                         <tr>
-                            <th></th>
+                            <th>#</th>
                             <th>Image</th>
                             <th>Product Name</th>
                             <th>Price</th>
                             <th>Quantity</th>
                             <th>Payment Status</th>
-                            <th>Delevary Date</th>
-                            <th>Order Status</th>
-                            <th>Cancel Order</th>
+                            <th>Delivery Date</th>
+                            <th>Status</th>
+                            <th>Cancel</th>
                         </tr>
                     </thead>
                     <tbody>
-                        {orders &&
-                            orders.map((order, i) => {
-                                return (order.products?.map(product => <tr key={product._id}>
-                                    <th></th>
-                                    <td><img src={product.img} alt='' className='w-12' /></td>
-                                    <td>{product.productName}</td>
-                                    <td>{product.price * product.quantity}</td>
-                                    <td>{product.quantity}</td>
-                                    <td>{order.paymentType}</td>
-                                    <td>{delevaryDates(order?.orderDate)}</td>
-                                    <td>
-                                        {
-                                            product.status ? <span className={`text-xl font-semibold capitalize ${product.status === 'confirmed' ? 'text-success' : 'text-error'}`}>{product.status}</span> : <span>Processing</span>
-                                        }
-                                    </td>
-                                    {
-                                        !product.status && 
-                                        <td><span onClick={() => handleDeleteOrder(order._id, product._id)} className='btn btn-error btn-xs' >cancel</span></td>
-                                    }
-                                </tr>))
-                            })
-                        }
+                        {currentRecords.map((product, i) => (
+                            <tr key={product._id}>
+                                <td>{indexOfFirstRecord + i + 1}</td>
+                                <td>
+                                    <img src={product.img} alt={product.productName} className='w-12 mx-auto' />
+                                </td>
+                                <td>{product.productName}</td>
+                                <td>৳{product.price * product.quantity}</td>
+                                <td>{product.quantity}</td>
+                                <td>{product.paymentType}</td>
+                                <td>{deliveryDate(product.orderDate)}</td>
+                                <td>
+                                    {product.status ? (
+                                        <span
+                                            className={`text-sm font-semibold capitalize ${
+                                                product.status === 'confirmed' ? 'text-green-600' : 'text-red-500'
+                                            }`}
+                                        >
+                                            {product.status}
+                                        </span>
+                                    ) : (
+                                        <span className="text-gray-500">Processing</span>
+                                    )}
+                                </td>
+                                <td>
+                                    {!product.status && (
+                                        <button
+                                            onClick={() => handleDeleteOrder(product.orderId, product._id)}
+                                            className="btn btn-xs btn-error"
+                                        >
+                                            Cancel
+                                        </button>
+                                    )}
+                                </td>
+                            </tr>
+                        ))}
                     </tbody>
                 </table>
+
+                {/* Pagination and Record Info */}
+                <div className="flex justify-between items-center mt-5">
+                    <div className="text-sm text-gray-600">
+                        Showing {indexOfFirstRecord + 1}–{Math.min(indexOfLastRecord, allProducts.length)} of {allProducts.length} orders
+                    </div>
+                    <div className="inline-flex rounded-md shadow-sm">
+                        {Array.from({ length: totalPages }, (_, index) => (
+                            <button
+                                key={index + 1}
+                                onClick={() => paginate(index + 1)}
+                                className={`px-3 py-1 border ${
+                                    currentPage === index + 1
+                                        ? 'bg-primary text-white'
+                                        : 'bg-gray-100 hover:bg-primary hover:text-white'
+                                } rounded-md mx-1`}
+                            >
+                                {index + 1}
+                            </button>
+                        ))}
+                    </div>
+                </div>
             </div>
         </div>
     );
