@@ -156,6 +156,7 @@ const DashboardLayout = () => {
                       <li><Link to='/dashboard/my-products'><HiSquare3Stack3D />My Products</Link></li>
                       <li><Link to='/dashboard/my-product-order'><MdBorderStyle />My Produuct Orders</Link></li>
                       <li><Link to='/dashboard/add-product'><BiMessageSquareAdd />Add a Product</Link></li>
+                      <li><Link to='/dashboard/reports'><BiMessageSquareAdd />Reports</Link></li>
                     </ul>
                   </details>
                   </li>
